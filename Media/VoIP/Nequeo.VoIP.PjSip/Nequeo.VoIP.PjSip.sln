@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nequeo.VoIP.PjSip", "Nequeo.VoIP.PjSip\Nequeo.VoIP.PjSip.csproj", "{95D66DA8-32D2-473A-B2A0-5D2F33AAE281}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nequeo.VoIP.PjSip.x86", "Nequeo.VoIP.PjSip.x86\Nequeo.VoIP.PjSip.x86.csproj", "{F89B80A0-30B1-4A73-9CEB-7E8A277A6ECF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nequeo.VoIP.PjSip.Controls", "Nequeo.VoIP.PjSip.Controls\Nequeo.VoIP.PjSip.Controls.csproj", "{A1F7AA88-978D-4FFC-8EEB-82C74AD8012B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95D66DA8-32D2-473A-B2A0-5D2F33AAE281}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95D66DA8-32D2-473A-B2A0-5D2F33AAE281}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95D66DA8-32D2-473A-B2A0-5D2F33AAE281}.Debug|x64.ActiveCfg = Debug|x64
+		{95D66DA8-32D2-473A-B2A0-5D2F33AAE281}.Debug|x64.Build.0 = Debug|x64
+		{95D66DA8-32D2-473A-B2A0-5D2F33AAE281}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95D66DA8-32D2-473A-B2A0-5D2F33AAE281}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95D66DA8-32D2-473A-B2A0-5D2F33AAE281}.Release|x64.ActiveCfg = Release|x64
+		{95D66DA8-32D2-473A-B2A0-5D2F33AAE281}.Release|x64.Build.0 = Release|x64
+		{F89B80A0-30B1-4A73-9CEB-7E8A277A6ECF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F89B80A0-30B1-4A73-9CEB-7E8A277A6ECF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F89B80A0-30B1-4A73-9CEB-7E8A277A6ECF}.Debug|x64.ActiveCfg = Debug|x86
+		{F89B80A0-30B1-4A73-9CEB-7E8A277A6ECF}.Debug|x64.Build.0 = Debug|x86
+		{F89B80A0-30B1-4A73-9CEB-7E8A277A6ECF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F89B80A0-30B1-4A73-9CEB-7E8A277A6ECF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F89B80A0-30B1-4A73-9CEB-7E8A277A6ECF}.Release|x64.ActiveCfg = Release|x86
+		{F89B80A0-30B1-4A73-9CEB-7E8A277A6ECF}.Release|x64.Build.0 = Release|x86
+		{A1F7AA88-978D-4FFC-8EEB-82C74AD8012B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1F7AA88-978D-4FFC-8EEB-82C74AD8012B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1F7AA88-978D-4FFC-8EEB-82C74AD8012B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A1F7AA88-978D-4FFC-8EEB-82C74AD8012B}.Debug|x64.Build.0 = Debug|Any CPU
+		{A1F7AA88-978D-4FFC-8EEB-82C74AD8012B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1F7AA88-978D-4FFC-8EEB-82C74AD8012B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1F7AA88-978D-4FFC-8EEB-82C74AD8012B}.Release|x64.ActiveCfg = Release|Any CPU
+		{A1F7AA88-978D-4FFC-8EEB-82C74AD8012B}.Release|x64.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
