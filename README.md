@@ -1,1 +1,3 @@
-# projects
+# Projects
+
+including media
