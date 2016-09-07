@@ -1,4 +1,4 @@
-# Projects
+# Projects [![Build Status](https://travis-ci.org/drazenzadravec/nequeo.svg?branch=master)](https://travis-ci.org/drazenzadravec/nequeo)
 
 including media
 
