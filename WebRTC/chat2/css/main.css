@@ -1,0 +1,117 @@
+html { /* avoid annoying page width change when moving from the home page */
+  overflow-y: scroll; }
+  
+body { 
+  font-family: "arial"; font-size: 12px; 
+}
+
+#pinned {
+  position: fixed;
+  top: 100px;
+	right: 100px;
+	width: 100px; 
+	height: 100px;
+	border: rgba(0, 0, 0, 0.349); 
+	border-style: solid; 
+	border-width: 1px;
+	background-color: rgba(194, 43, 43, 0.349); 
+}
+
+#dialogVideoRemote { 
+  width: 320px; height: 300px; padding: 0.1em; 
+}
+
+#dialogVideoLocal {
+   width: 320px; height: 300px; padding: 0.1em; 
+}
+
+#resizableRemote { 
+  background-position: top left; 
+}
+
+#resizableRemote { 
+  width: 300px; height: 270px; padding: 0.1em; 
+}
+
+#remoteVideo { 
+  margin-top: 0.1em; margin-left: 0.1em; margin-right: 0.1em; margin-bottom: 0.1em; 
+}
+
+#resizableLocal { 
+  background-position: top left; 
+}
+
+#resizableLocal { 
+  width: 300px; height: 270px; padding: 0.1em; 
+}
+
+#localVideo { 
+  margin-top: 0.1em; margin-left: 0.1em; margin-right: 0.1em; margin-bottom: 0.1em; 
+}
+
+div { 
+  margin-top: 0.2em; margin-left: 0.2em; margin-right: 0.2em; margin-bottom: 0.2em; 
+}
+
+.divID { 
+  width: 400px; 
+}
+
+.divID1 {
+   width: 450px; 
+}
+
+.divSpacer { 
+  margin-top: 1.5em; margin-left: 1.5em; margin-right: 1.5em; margin-bottom: 1.5em; 
+}
+
+.divAlertText { 
+  width: 600px; border: rgba(0, 0, 0, 0.349); border-style: solid; border-width: 1px; 
+}
+
+.divAlertListText { 
+  width: 600px; border: rgba(0, 0, 0, 0.349); border-style: solid; border-width: 1px; 
+}
+
+.labelClass { 
+  display: block; float: left; width: 105px; 
+}
+
+.labelClass1 { 
+  display: block; float: left; width: 160px; 
+}
+
+.textInput { 
+  width: 200px;
+}
+
+.textSendMessage { 
+  width: 600px;
+}
+
+div#container { 
+  margin: 0 auto 0 auto; max-width: 60em; padding: 1em 1.5em 1.3em 1.5em; 
+}
+
+div.progress, div#bitrate {
+  margin: 0 0 1em 0;
+}
+
+div.progress {
+  display: inline-block;
+  width: 600px;
+}
+
+div.labelProgress {
+  display: inline-block;
+  width: 70px;
+}
+
+form {
+  margin: 0 0 1em 0;
+  white-space: nowrap;
+}
+
+progress {
+  width: 515px;
+}
