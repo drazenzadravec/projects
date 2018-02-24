@@ -1,0 +1,40 @@
+
+Supported Chrome recording mime type ???:
+video/webm
+video/webm;codecs=vp8
+video/webm;codecs=vp9
+video/webm;codecs=vp8.0
+video/webm;codecs=vp9.0
+video/webm;codecs=h264
+video/webm;codecs=H264
+video/webm;codecs=avc1
+video/webm;codecs=vp8,opus
+video/WEBM;codecs=VP8,OPUS
+video/webm;codecs=vp9,opus
+video/webm;codecs=vp8,vp9,opus
+video/webm;codecs=h264,opus
+video/webm;codecs=h264,vp9,opus
+video/x-matroska;codecs=avc1
+audio/webm
+audio/webm;codecs=opus
+
+
+
+The video container used by both Chrome and Firefox is:
+    .webm
+
+The video codecs available are:
+    VP8 on Firefox and Chrome 47+
+    VP8/VP9 on Chrome 49+
+    VP8/VP9/H.264 on Chrome 52+
+
+The audio codec used is:
+    Vorbis @ 44100 Hz on Firefox 30+
+    Opus Audio @ 48000 Hz on Chrome 49+
+
+ 	                Chrome 49+	    Chrome 52+	    Firefox 30 and up
+    Container	      webm	        webm	          webm
+    Video codec	    VP8/VP9	      VP8/VP9/H.264	  VP8
+    Audio codec	    Opus @ 48kHz	Opus @ 48kHz	  Vorbis @ 44.1 kHz
+
+Not quite the standard .MP4 file with H.264 video and AAC audio.
