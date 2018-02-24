@@ -10,19 +10,19 @@ function pageLoad() {
     // WebRTC options.
     var options = { 
         debug: true,
-        signallingURL: "wss://192.168.0.200:8822",
+        signallingURL: "wss://[HOST]:[PORT]",
         peerConnectionConfiguration: {
             iceServers: [ 
         		{ 
-                    "urls": "stun:192.168.0.200:8830"
+                    "urls": "stun:[HOST]:[PORT]"
         		},
                 {
-                    "urls": "turn:192.168.0.200:8830?transport=udp",
+                    "urls": "turn:[HOST]:[PORT]?transport=udp",
                     "username": "drazen",
                     "credential": "drazen8"
                 },
                 {
-                    "urls": "turn:192.168.0.200:8830?transport=tcp",
+                    "urls": "turn:[HOST]:[PORT]?transport=tcp",
                     "username": "drazen",
                     "credential": "drazen8"
                 }
