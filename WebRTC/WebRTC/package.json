@@ -1,0 +1,45 @@
+{
+  "name": "webrtc",
+  "version": "6.11.8",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drazenzadravec/webrtc.git"
+  },
+  "main": "./js/webrtc.js",
+  "description": "WebRTC global adapter",
+  "dependencies": {
+    "filetransfer": "^2.0.4",
+    "localmedia": "^4.0.0",
+    "rtcpeerconnection": "^8.0.0",
+    "webrtcsupport": "^2.2.0",
+    "wildemitter": "^1.2.0",
+    "socket.io-client": "1.3.7",
+    "attachmediastream": "^2.0.0",
+    "mockconsole": "0.0.1"
+  },
+  "devDependencies": {
+    "browserify": "^13.1.0",
+    "precommit-hook": "^3.0.0",
+    "request": "^2.72.0",
+    "tape": "^4.0.0",
+    "testling": "^1.7.1",
+    "travis-multirunner": "^4.0.0",
+    "uglify-js": "^2.7.3",
+    "stupid-server": "^0.2.2",
+    "webrtc-adapter": "^4.0.0"
+  },
+  "peerDependencies": {
+    "webrtc-adapter": "^4.0.0"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "node build.js",
+    "lint": "jshint src",
+    "validate": "npm ls"
+  },
+  "pre-commit": [
+    "lint",
+    "validate"
+  ],
+  "false": {}
+}
