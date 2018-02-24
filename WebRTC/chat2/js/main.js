@@ -18,13 +18,13 @@ function pageLoad() {
         		},
                 {
                     "urls": "turn:[HOST]:[PORT]?transport=udp",
-                    "username": "drazen",
-                    "credential": "drazen8"
+                    "username": "[username]",
+                    "credential": "[password]"
                 },
                 {
                     "urls": "turn:[HOST]:[PORT]?transport=tcp",
-                    "username": "drazen",
-                    "credential": "drazen8"
+                    "username": "[username]",
+                    "credential": "[password]"
                 }
         	]
         } 
