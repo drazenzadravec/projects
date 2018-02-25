@@ -10,21 +10,21 @@ function pageLoad() {
     // WebRTC options.
     var options = { 
         debug: true,
-        signallingURL: "wss://[HOST]:[PORT]",
+        signallingURL: "wss://192.168.0.200:8822",
         peerConnectionConfiguration: {
             iceServers: [ 
         		{ 
-                    "urls": "stun:[HOST]:[PORT]"
+                    "urls": "stun:192.168.0.200:8830"
         		},
                 {
-                    "urls": "turn:[HOST]:[PORT]?transport=udp",
-                    "username": "[username]",
-                    "credential": "[password]"
+                    "urls": "turn:192.168.0.200:8830?transport=udp",
+                    "username": "drazen",
+                    "credential": "drazen8"
                 },
                 {
-                    "urls": "turn:[HOST]:[PORT]?transport=tcp",
-                    "username": "[username]",
-                    "credential": "[password]"
+                    "urls": "turn:192.168.0.200:8830?transport=tcp",
+                    "username": "drazen",
+                    "credential": "drazen8"
                 }
         	]
         } 
@@ -178,6 +178,20 @@ function pageLoad() {
 
             // Set the contact state.
             remoteState.innerHTML = state;
+        });
+
+        // Contact details
+        webrtc.on('signalDetails', function (arg) {
+            
+            var contact = arg.contact;
+            var uniqueID = contact.getUniqueID();
+            var applicationID = contact.getApplicationID();
+            var details = arg.details;
+            
+            // Get the contact video index.
+            var peerIndex = conferenceContactList.indexOf(uniqueID);
+            
+            //TODO assign the details.
         });
 
         // Contact did not answer
