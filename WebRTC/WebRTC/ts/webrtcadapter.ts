@@ -188,15 +188,16 @@ export class WebRtcAdapter {
      * @param {boolean}     available       True if this client is avaliable for contact; else false.
      * @param {boolean}     broadcast       True if this client allows the unique id to be broadcast; else false.
      * @param {boolean}     broadcastAppID  True if this client allows the application id to be broadcast; else false.
+     * @param {string}      accessToken     The access token.
      */
-    changeClientSettings(uniqueID: string, applicationID: string, available: boolean, broadcast: boolean, broadcastAppID: boolean): void {
+    changeClientSettings(uniqueID: string, applicationID: string, available: boolean, broadcast: boolean, broadcastAppID: boolean, accessToken: string): void {
 
         // Assign this client details.
         this.uniqueID = uniqueID;
         this.applicationID = applicationID;
 
         // Change client settings
-        this.signalling.changeClientSettings(uniqueID, applicationID, available, broadcast, broadcastAppID);
+        this.signalling.changeClientSettings(uniqueID, applicationID, available, broadcast, broadcastAppID, accessToken);
     }
 
     /**
@@ -326,7 +327,7 @@ export class WebRtcAdapter {
      * @param {string}  applicationID   The contact application id.
      * @param {boolean}  isData         True if contact is only data channel; else false.
      */
-    removeContactPeer = function (uniqueID: string, applicationID: string, isData: boolean): void {
+    removeContactPeer(uniqueID: string, applicationID: string, isData: boolean): void {
 
         // Get all peers.
         this.getContactPeers().forEach(function (peer) {
@@ -424,6 +425,37 @@ export class WebRtcAdapter {
 
                 // Send the message to the peer.
                 peer.sendMessage(message);
+            }
+        });
+    }
+
+    /**
+     * Send a details to all contacts.
+     * 
+     * @param {string}  details         The details to sent.
+     */
+    sendDetailsToAllContacts(details: string): void {
+        this.contactPeers.forEach(function (peer) {
+
+            // Send the details to the peer.
+            peer.sendDetails(details);
+        });
+    }
+
+    /**
+     * Send a details to the contact.
+     * 
+     * @param {string}  uniqueID        The contact unique id.
+     * @param {string}  applicationID   The contact application id.
+     * @param {string}  details         The details to sent.
+     * @param {boolean}  isData         True if contact is only data channel; else false.
+     */
+    sendDetailsToContact(uniqueID: string, applicationID: string, details: string, isData: boolean): void {
+        this.contactPeers.forEach(function (peer) {
+            if (peer.uniqueID === uniqueID && peer.applicationID === applicationID && peer.isData === isData) {
+
+                // Send the details to the peer.
+                peer.sendDetails(details);
             }
         });
     }

@@ -1,14 +1,12 @@
-"use strict";
-exports.__esModule = true;
-var WildEmitter = require("wildemitter");
-var webrtcSupport = require("webrtcsupport");
-var mockconsole = require("mockconsole");
-var webrtcadapter_1 = require("./webrtcadapter");
+var WildEmitter = require('wildemitter');
+var webrtcSupport = require('webrtcsupport');
+var mockconsole = require('mockconsole');
+var webrtcadapter_1 = require('./webrtcadapter');
 /**
  * WebRTC controls the interaction between the
  * adapter and user configuration.
  */
-var WebRTC = /** @class */ (function () {
+var WebRTC = (function () {
     /**
      * WebRTC prototype.
      *
@@ -221,6 +219,19 @@ var WebRTC = /** @class */ (function () {
             };
             // Emit the message.
             self.emit('signalState', argum);
+        });
+        // Signalling event.
+        this.webrtcadapter.on('signallingEventDetails', function (text, signalling, arg) {
+            // Get the contact.
+            var contact = self.createContact(arg.contactUniqueID, arg.contactApplicationID);
+            contact.setContactDetails(arg.clientDetails);
+            var argum = {
+                contact: contact,
+                details: arg.clientDetails,
+                text: text
+            };
+            // Emit the message.
+            self.emit('signalDetails', argum);
         });
         // Signalling event.
         this.webrtcadapter.on('signallingEventJoinConferenceOffer', function (text, signalling, arg) {
@@ -708,5 +719,5 @@ var WebRTC = /** @class */ (function () {
         this.webrtcadapter.closeStream();
     };
     return WebRTC;
-}());
+})();
 exports.WebRTC = WebRTC;

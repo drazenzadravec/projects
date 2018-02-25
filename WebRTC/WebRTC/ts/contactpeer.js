@@ -1,10 +1,8 @@
-"use strict";
-exports.__esModule = true;
-var WildEmitter = require("wildemitter");
+var WildEmitter = require('wildemitter');
 /**
  * Contact peer container, this holds information to one contact peer.
  */
-var ContactPeer = /** @class */ (function () {
+var ContactPeer = (function () {
     /**
      * Contact peer prototype.
      *
@@ -40,6 +38,7 @@ var ContactPeer = /** @class */ (function () {
         // Assign this contact details.
         var uniqueID = contactPeerOptions.uniqueID;
         var applicationID = contactPeerOptions.applicationID;
+        var contactDetails = '';
         // Store all channels.
         var receiveDataChannel = null;
         var sendDataChannel = null;
@@ -59,8 +58,6 @@ var ContactPeer = /** @class */ (function () {
             // Create a new peer connection to the STUN and TURN servers
             // with the ICE configuration.
             var peerConnection = new RTCPeerConnection(parent.config.peerConnectionConfiguration);
-            //let peerConnection = new PeerConnection(
-            //    parent.config.peerConnectionConfiguration);
         }
         catch (e) {
             // Log the error.
@@ -237,6 +234,18 @@ var ContactPeer = /** @class */ (function () {
         this.signalling.sendClientState(contactUniqueID, contactApplicationID, state);
     };
     /**
+     * Send the details to this contact.
+     *
+     * @param {string}  details     The details to send to the contact.
+     */
+    ContactPeer.prototype.sendDetails = function (details) {
+        // Get this contact details.
+        var contactUniqueID = this.uniqueID;
+        var contactApplicationID = this.applicationID;
+        // Send the details through the signalling provider.
+        this.signalling.sendClientDetails(contactUniqueID, contactApplicationID, details);
+    };
+    /**
      * Send do not want to answer to this contact.
      */
     ContactPeer.prototype.noAnswer = function () {
@@ -295,6 +304,24 @@ var ContactPeer = /** @class */ (function () {
         // Get this contact details.
         var contactApplicationID = this.applicationID;
         return contactApplicationID;
+    };
+    /**
+     * Set the contact details.
+     *
+     * @param {string}  details        The contact details.
+     */
+    ContactPeer.prototype.setContactDetails = function (details) {
+        this.contactDetails = details;
+    };
+    /**
+     * Get the contact details.
+     *
+     * @return {string} Returns the contact details.
+     */
+    ContactPeer.prototype.getContactDetails = function () {
+        // Get this contact details.
+        var contactDetails = this.contactDetails;
+        return contactDetails;
     };
     /**
      * Set the remote stream to the video element.
@@ -831,5 +858,5 @@ var ContactPeer = /** @class */ (function () {
         }
     };
     return ContactPeer;
-}());
+})();
 exports.ContactPeer = ContactPeer;

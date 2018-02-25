@@ -30,6 +30,15 @@ export interface ISignalling {
     sendClientState(contactUniqueID: string, contactApplicationID: string, state: string): void;
 
     /**
+     * Send the current details of the client to the contact.
+     * 
+     * @param {string}  contactUniqueID         The contact unique id.
+     * @param {string}  contactApplicationID    The contact application id.
+     * @param {string}  details                 The client details.
+     */
+    sendClientDetails(contactUniqueID: string, contactApplicationID: string, details: string): void;
+
+    /**
      * Send a message to this contact.
      * 
      * @param {string}  contactUniqueID         The contact unique id.
@@ -343,6 +352,23 @@ export class Signalling implements ISignalling {
                             // Send message.
                             parent.emit('signallingEventState', "Signalling contact state.", this, details);
                         }
+                        else if (signal.clientDetails) {
+                            // A message from a contact.
+    
+                            // Get the contact details.
+                            let uniqueID = signal.contactUniqueID;
+                            let applicationID = signal.contactApplicationID;
+    
+                            // Details.
+                            let details = {
+                                contactUniqueID: uniqueID,
+                                contactApplicationID: applicationID,
+                                clientDetails: signal.details
+                            };
+    
+                            // Send message.
+                            parent.emit('signallingEventDetails', "Signalling contact details.", this, details);
+                        }
                         else {
                             // If the client is available
                             if (signal.available && signal.available === true) {
@@ -604,6 +630,30 @@ export class Signalling implements ISignalling {
                 "contactApplicationID": contactApplicationID,
                 "clientState": true,
                 "state": state
+            })
+        );
+    }
+
+    /**
+     * Send the current details of the client to the contact.
+     * 
+     * @param {string}  contactUniqueID         The contact unique id.
+     * @param {string}  contactApplicationID    The contact application id.
+     * @param {string}  details                 The client details.
+     */
+    sendClientDetails(contactUniqueID: string, contactApplicationID: string, details: string): void {
+
+        // If the socket is not open.
+        if (this.webSocket.readyState !== this.webSocket.OPEN) return;
+        
+        // Send to the signalling provider.
+        this.webSocket.send(
+            JSON.stringify(
+            {
+                "contactUniqueID": contactUniqueID,
+                "contactApplicationID": contactApplicationID,
+                "clientDetails": true,
+                "details": details
             })
         );
     }

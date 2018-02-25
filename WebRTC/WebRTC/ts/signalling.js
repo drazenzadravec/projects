@@ -1,12 +1,10 @@
-"use strict";
-exports.__esModule = true;
-var WildEmitter = require("wildemitter");
+var WildEmitter = require('wildemitter');
 /**
  * Signalling class used to signal other contacted
  * clients, this signalling class uses WebSockets
  * for the signalling transport.
  */
-var Signalling = /** @class */ (function () {
+var Signalling = (function () {
     /**
      * Signalling prototype.
      *
@@ -131,6 +129,20 @@ var Signalling = /** @class */ (function () {
                             };
                             // Send message.
                             parent.emit('signallingEventState', "Signalling contact state.", this, details);
+                        }
+                        else if (signal.clientDetails) {
+                            // A message from a contact.
+                            // Get the contact details.
+                            var uniqueID = signal.contactUniqueID;
+                            var applicationID = signal.contactApplicationID;
+                            // Details.
+                            var details = {
+                                contactUniqueID: uniqueID,
+                                contactApplicationID: applicationID,
+                                clientDetails: signal.details
+                            };
+                            // Send message.
+                            parent.emit('signallingEventDetails', "Signalling contact details.", this, details);
                         }
                         else {
                             // If the client is available
@@ -313,8 +325,9 @@ var Signalling = /** @class */ (function () {
      * @param {boolean}     available       True if this client is avaliable for contact; else false.
      * @param {boolean}     broadcast       True if this client allows the unique id to be broadcast; else false.
      * @param {boolean}     broadcastAppID  True if this client allows the application id to be broadcast; else false.
+     * @param {string}      accessToken     The access token.
      */
-    Signalling.prototype.changeClientSettings = function (uniqueID, applicationID, available, broadcast, broadcastAppID) {
+    Signalling.prototype.changeClientSettings = function (uniqueID, applicationID, available, broadcast, broadcastAppID, accessToken) {
         // If the socket is not open.
         if (this.webSocket.readyState !== this.webSocket.OPEN)
             return;
@@ -324,7 +337,8 @@ var Signalling = /** @class */ (function () {
             "applicationID": applicationID,
             "available": available,
             "broadcast": broadcast,
-            "broadcastAppID": broadcastAppID
+            "broadcastAppID": broadcastAppID,
+            "accessToken": accessToken
         }));
     };
     /**
@@ -344,6 +358,25 @@ var Signalling = /** @class */ (function () {
             "contactApplicationID": contactApplicationID,
             "clientState": true,
             "state": state
+        }));
+    };
+    /**
+     * Send the current details of the client to the contact.
+     *
+     * @param {string}  contactUniqueID         The contact unique id.
+     * @param {string}  contactApplicationID    The contact application id.
+     * @param {string}  details                 The client details.
+     */
+    Signalling.prototype.sendClientDetails = function (contactUniqueID, contactApplicationID, details) {
+        // If the socket is not open.
+        if (this.webSocket.readyState !== this.webSocket.OPEN)
+            return;
+        // Send to the signalling provider.
+        this.webSocket.send(JSON.stringify({
+            "contactUniqueID": contactUniqueID,
+            "contactApplicationID": contactApplicationID,
+            "clientDetails": true,
+            "details": details
         }));
     };
     /**
@@ -667,5 +700,5 @@ var Signalling = /** @class */ (function () {
         }
     };
     return Signalling;
-}());
+})();
 exports.Signalling = Signalling;

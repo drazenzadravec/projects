@@ -259,6 +259,23 @@ export class WebRTC {
         });
 
         // Signalling event.
+        this.webrtcadapter.on('signallingEventDetails', function (text, signalling, arg) {
+            
+            // Get the contact.
+            let contact = self.createContact(arg.contactUniqueID, arg.contactApplicationID);
+            contact.setContactDetails(arg.clientDetails);
+            
+            let argum = {
+                contact: contact,
+                details: arg.clientDetails,
+                text: text
+            };
+
+            // Emit the message.
+            self.emit('signalDetails', argum);
+        });
+
+        // Signalling event.
         this.webrtcadapter.on('signallingEventJoinConferenceOffer', function (text, signalling, arg) {
             
             // Get the contact.

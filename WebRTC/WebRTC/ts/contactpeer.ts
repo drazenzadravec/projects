@@ -19,6 +19,7 @@ export class ContactPeer {
     logger: any;
     uniqueID: string;
     applicationID: string;
+    contactDetails: string;
     mediaRecorder: any;
     isData: boolean;
     fileName: string;
@@ -72,6 +73,7 @@ export class ContactPeer {
         // Assign this contact details.
         let uniqueID = contactPeerOptions.uniqueID;
         let applicationID = contactPeerOptions.applicationID;
+        let contactDetails = '';
 
         // Store all channels.
         let receiveDataChannel = null;
@@ -320,6 +322,21 @@ export class ContactPeer {
     }
 
     /**
+     * Send the details to this contact.
+     * 
+     * @param {string}  details     The details to send to the contact.
+     */
+    sendDetails(details: string): void {
+
+        // Get this contact details.
+        let contactUniqueID = this.uniqueID;
+        let contactApplicationID = this.applicationID;
+        
+        // Send the details through the signalling provider.
+        this.signalling.sendClientDetails(contactUniqueID, contactApplicationID, details);
+    }
+
+    /**
      * Send do not want to answer to this contact.
      */
     noAnswer(): void {
@@ -392,6 +409,28 @@ export class ContactPeer {
         // Get this contact details.
         let contactApplicationID = this.applicationID;
         return contactApplicationID;
+    }
+
+    /**
+     * Set the contact details.
+     * 
+     * @param {string}  details        The contact details.
+     */
+    setContactDetails(details: string): void {
+
+        this.contactDetails = details;
+    }
+
+    /**
+     * Get the contact details.
+     * 
+     * @return {string} Returns the contact details.
+     */
+    getContactDetails(): string {
+
+        // Get this contact details.
+        let contactDetails = this.contactDetails;
+        return contactDetails;
     }
 
     /**

@@ -1,16 +1,14 @@
-"use strict";
-exports.__esModule = true;
-var WildEmitter = require("wildemitter");
-var webrtcSupport = require("webrtcsupport");
-var mockconsole = require("mockconsole");
-var contactPeer = require("./contactpeer");
-var signalling_1 = require("./signalling");
+var WildEmitter = require('wildemitter');
+var webrtcSupport = require('webrtcsupport');
+var mockconsole = require('mockconsole');
+var contactPeer = require('./contactpeer');
+var signalling_1 = require('./signalling');
 /**
  * WebRTC adapter controls the interaction between the
  * signalling provider and the contact peers
  * implementation.
  */
-var WebRtcAdapter = /** @class */ (function () {
+var WebRtcAdapter = (function () {
     /**
      * WebRTC adapter prototype.
      *
@@ -50,22 +48,6 @@ var WebRtcAdapter = /** @class */ (function () {
      */
     function WebRtcAdapter(webRtcOptions) {
         this.webRtcOptions = webRtcOptions;
-        /**
-         * Remove the contact.
-         *
-         * @param {string}  uniqueID        The contact unique id.
-         * @param {string}  applicationID   The contact application id.
-         * @param {boolean}  isData         True if contact is only data channel; else false.
-         */
-        this.removeContactPeer = function (uniqueID, applicationID, isData) {
-            // Get all peers.
-            this.getContactPeers().forEach(function (peer) {
-                if (peer.uniqueID === uniqueID && peer.applicationID === applicationID && peer.isData === isData) {
-                    // Close the connection.
-                    peer.close();
-                }
-            });
-        };
         // local.
         var self = this;
         var closed = false;
@@ -165,13 +147,14 @@ var WebRtcAdapter = /** @class */ (function () {
      * @param {boolean}     available       True if this client is avaliable for contact; else false.
      * @param {boolean}     broadcast       True if this client allows the unique id to be broadcast; else false.
      * @param {boolean}     broadcastAppID  True if this client allows the application id to be broadcast; else false.
+     * @param {string}      accessToken     The access token.
      */
-    WebRtcAdapter.prototype.changeClientSettings = function (uniqueID, applicationID, available, broadcast, broadcastAppID) {
+    WebRtcAdapter.prototype.changeClientSettings = function (uniqueID, applicationID, available, broadcast, broadcastAppID, accessToken) {
         // Assign this client details.
         this.uniqueID = uniqueID;
         this.applicationID = applicationID;
         // Change client settings
-        this.signalling.changeClientSettings(uniqueID, applicationID, available, broadcast, broadcastAppID);
+        this.signalling.changeClientSettings(uniqueID, applicationID, available, broadcast, broadcastAppID, accessToken);
     };
     /**
      * Get the client unique id.
@@ -272,6 +255,22 @@ var WebRtcAdapter = /** @class */ (function () {
         });
     };
     /**
+     * Remove the contact.
+     *
+     * @param {string}  uniqueID        The contact unique id.
+     * @param {string}  applicationID   The contact application id.
+     * @param {boolean}  isData         True if contact is only data channel; else false.
+     */
+    WebRtcAdapter.prototype.removeContactPeer = function (uniqueID, applicationID, isData) {
+        // Get all peers.
+        this.getContactPeers().forEach(function (peer) {
+            if (peer.uniqueID === uniqueID && peer.applicationID === applicationID && peer.isData === isData) {
+                // Close the connection.
+                peer.close();
+            }
+        });
+    };
+    /**
      * Get all contacts.
      *
      * @return {Array} Returns the contact list.
@@ -346,6 +345,33 @@ var WebRtcAdapter = /** @class */ (function () {
             if (peer.uniqueID === uniqueID && peer.applicationID === applicationID && peer.isData === isData) {
                 // Send the message to the peer.
                 peer.sendMessage(message);
+            }
+        });
+    };
+    /**
+     * Send a details to all contacts.
+     *
+     * @param {string}  details         The details to sent.
+     */
+    WebRtcAdapter.prototype.sendDetailsToAllContacts = function (details) {
+        this.contactPeers.forEach(function (peer) {
+            // Send the details to the peer.
+            peer.sendDetails(details);
+        });
+    };
+    /**
+     * Send a details to the contact.
+     *
+     * @param {string}  uniqueID        The contact unique id.
+     * @param {string}  applicationID   The contact application id.
+     * @param {string}  details         The details to sent.
+     * @param {boolean}  isData         True if contact is only data channel; else false.
+     */
+    WebRtcAdapter.prototype.sendDetailsToContact = function (uniqueID, applicationID, details, isData) {
+        this.contactPeers.forEach(function (peer) {
+            if (peer.uniqueID === uniqueID && peer.applicationID === applicationID && peer.isData === isData) {
+                // Send the details to the peer.
+                peer.sendDetails(details);
             }
         });
     };
@@ -486,7 +512,7 @@ var WebRtcAdapter = /** @class */ (function () {
             // Init the local video stream.
             this.localStream = stream;
             this.localStreamVideoElement.srcObject = this.localStream;
-        })["catch"](function (error) {
+        }).catch(function (error) {
             localLogger.error(error);
         });
     };
@@ -512,7 +538,7 @@ var WebRtcAdapter = /** @class */ (function () {
             // Init the local video stream.
             this.localStream = stream;
             this.localStreamVideoElement.srcObject = this.localStream;
-        })["catch"](function (error) {
+        }).catch(function (error) {
             localLogger.error(error);
         });
     };
@@ -536,7 +562,7 @@ var WebRtcAdapter = /** @class */ (function () {
             // Init the local video stream.
             this.localStream = stream;
             this.localStreamVideoElement.srcObject = this.localStream;
-        })["catch"](function (error) {
+        }).catch(function (error) {
             localLogger.error(error);
         });
     };
@@ -600,17 +626,17 @@ var WebRtcAdapter = /** @class */ (function () {
             // If media recorder created.
             if (this.mediaRecorder) {
                 // Create local refs.
-                var localSelf_1 = this;
+                var localSelf = this;
                 // On stop recording.
                 this.mediaRecorder.onstop = function (evt) {
-                    localSelf_1.emit('adapterRecordingStopped', "Adapter has stopped recording.", localSelf_1, evt);
+                    localSelf.emit('adapterRecordingStopped', "Adapter has stopped recording.", localSelf, evt);
                 };
                 // Recorded data is available.
                 this.mediaRecorder.ondataavailable = function (event) {
                     // If data exists.
                     if (event.data && event.data.size > 0) {
                         // Send the chunck on data.
-                        localSelf_1.emit('adapterRecordingData', "Adapter has recording data.", localSelf_1, event.data);
+                        localSelf.emit('adapterRecordingData', "Adapter has recording data.", localSelf, event.data);
                     }
                 };
                 // Collect 10ms of data.
@@ -647,5 +673,5 @@ var WebRtcAdapter = /** @class */ (function () {
         }
     };
     return WebRtcAdapter;
-}());
+})();
 exports.WebRtcAdapter = WebRtcAdapter;
