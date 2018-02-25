@@ -10,7 +10,7 @@ function pageLoad() {
     // WebRTC options.
     var options = { 
         debug: true,
-        signallingURL: "wss://[HOST IP]:[PORT]",
+        signallingURL: "wss://[HOST IP]:[PORT]/[App]/[File]",
         peerConnectionConfiguration: {
             iceServers: [ 
         		{ 
