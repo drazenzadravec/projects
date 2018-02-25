@@ -154,6 +154,23 @@ function Signalling(signalOptions) {
                         // Send message.
                         myParent.emit('signallingEventState', "Signalling contact state.", this, details);
                     }
+                    else if (signal.clientDetails) {
+                        // A message from a contact.
+
+                        // Get the contact details.
+                        var uniqueID = signal.contactUniqueID;
+                        var applicationID = signal.contactApplicationID;
+
+                        // Details.
+                        var details = {
+                            contactUniqueID: uniqueID,
+                            contactApplicationID: applicationID,
+                            clientDetails: signal.details
+                        };
+
+                        // Send message.
+                        myParent.emit('signallingEventDetails', "Signalling contact details.", this, details);
+                    }
                     else {
                         // If the client is available
                         if (signal.available && signal.available === true) {
@@ -415,6 +432,30 @@ Signalling.prototype.sendClientState = function (contactUniqueID, contactApplica
             "contactApplicationID": contactApplicationID,
             "clientState": true,
             "state": state
+        })
+    );
+};
+
+/**
+ * Send the current details of the client to the contact.
+ * 
+ * @param {string}  contactUniqueID         The contact unique id.
+ * @param {string}  contactApplicationID    The contact application id.
+ * @param {string}  details                 The client details.
+ */
+Signalling.prototype.sendClientDetails = function (contactUniqueID, contactApplicationID, details) {
+
+    // If the socket is not open.
+    if (this.webSocket.readyState !== this.webSocket.OPEN) return;
+    
+    // Send to the signalling provider.
+    this.webSocket.send(
+        JSON.stringify(
+        {
+            "contactUniqueID": contactUniqueID,
+            "contactApplicationID": contactApplicationID,
+            "clientDetails": true,
+            "details": details
         })
     );
 };

@@ -439,6 +439,37 @@ WebRtcAdapter.prototype.sendMessageToContact = function (uniqueID, applicationID
 };
 
 /**
+ * Send a details to all contacts.
+ * 
+ * @param {string}  details         The details to sent.
+ */
+WebRtcAdapter.prototype.sendDetailsToAllContacts = function (details) {
+    this.contactPeers.forEach(function (peer) {
+
+        // Send the details to the peer.
+        peer.sendDetails(details);
+    });
+};
+
+/**
+ * Send a details to the contact.
+ * 
+ * @param {string}  uniqueID        The contact unique id.
+ * @param {string}  applicationID   The contact application id.
+ * @param {string}  details         The details to sent.
+ * @param {boolean}  isData         True if contact is only data channel; else false.
+ */
+WebRtcAdapter.prototype.sendDetailsToContact = function (uniqueID, applicationID, details, isData) {
+    this.contactPeers.forEach(function (peer) {
+        if (peer.uniqueID === uniqueID && peer.applicationID === applicationID && peer.isData === isData) {
+
+            // Send the details to the peer.
+            peer.sendDetails(details);
+        }
+    });
+};
+
+/**
  * Send end of call to all contacts.
  */
 WebRtcAdapter.prototype.sendEndCallToAllContacts = function () {

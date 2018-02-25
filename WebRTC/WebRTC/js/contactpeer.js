@@ -43,6 +43,7 @@ function ContactPeer(contactPeerOptions) {
     // Assign this contact details.
     this.uniqueID = contactPeerOptions.uniqueID;
     this.applicationID = contactPeerOptions.applicationID;
+    this.contactDetails = '';
 
     // Get the parent logger.
     this.logger = myParent.logger;
@@ -328,6 +329,21 @@ ContactPeer.prototype.sendState = function (state) {
 };
 
 /**
+ * Send the details to this contact.
+ * 
+ * @param {string}  details     The details to send to the contact.
+ */
+ContactPeer.prototype.sendDetails = function (details) {
+
+    // Get this contact details.
+    var contactUniqueID = this.uniqueID;
+    var contactApplicationID = this.applicationID;
+    
+    // Send the details through the signalling provider.
+    this.signalling.sendClientDetails(contactUniqueID, contactApplicationID, details);
+};
+
+/**
  * Send do not want to answer to this contact.
  */
 ContactPeer.prototype.noAnswer = function () {
@@ -400,6 +416,28 @@ ContactPeer.prototype.getApplicationID = function () {
     // Get this contact details.
     var contactApplicationID = this.applicationID;
     return contactApplicationID;
+};
+
+/**
+ * Set the contact details.
+ * 
+ * @param {string}  details        The contact details.
+ */
+ContactPeer.prototype.setContactDetails = function (details) {
+
+    this.contactDetails = details;
+};
+
+/**
+ * Get the contact details.
+ * 
+ * @return {string} Returns the contact details.
+ */
+ContactPeer.prototype.getContactDetails = function () {
+
+    // Get this contact details.
+    var contactDetails = this.contactDetails;
+    return contactDetails;
 };
 
 /**
