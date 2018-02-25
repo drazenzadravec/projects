@@ -44,6 +44,7 @@ function ContactPeer(contactPeerOptions) {
     // Assign this contact details.
     this.uniqueID = contactPeerOptions.uniqueID;
     this.applicationID = contactPeerOptions.applicationID;
+    this.contactDetails = '';
 
     // Get the parent logger.
     this.logger = myParent.logger;
@@ -329,6 +330,21 @@ ContactPeer.prototype.sendState = function (state) {
 };
 
 /**
+ * Send the details to this contact.
+ * 
+ * @param {string}  details     The details to send to the contact.
+ */
+ContactPeer.prototype.sendDetails = function (details) {
+
+    // Get this contact details.
+    var contactUniqueID = this.uniqueID;
+    var contactApplicationID = this.applicationID;
+    
+    // Send the details through the signalling provider.
+    this.signalling.sendClientDetails(contactUniqueID, contactApplicationID, details);
+};
+
+/**
  * Send do not want to answer to this contact.
  */
 ContactPeer.prototype.noAnswer = function () {
@@ -401,6 +417,28 @@ ContactPeer.prototype.getApplicationID = function () {
     // Get this contact details.
     var contactApplicationID = this.applicationID;
     return contactApplicationID;
+};
+
+/**
+ * Set the contact details.
+ * 
+ * @param {string}  details        The contact details.
+ */
+ContactPeer.prototype.setContactDetails = function (details) {
+
+    this.contactDetails = details;
+};
+
+/**
+ * Get the contact details.
+ * 
+ * @return {string} Returns the contact details.
+ */
+ContactPeer.prototype.getContactDetails = function () {
+
+    // Get this contact details.
+    var contactDetails = this.contactDetails;
+    return contactDetails;
 };
 
 /**
@@ -1222,6 +1260,23 @@ function Signalling(signalOptions) {
                         // Send message.
                         myParent.emit('signallingEventState', "Signalling contact state.", this, details);
                     }
+                    else if (signal.clientDetails) {
+                        // A message from a contact.
+
+                        // Get the contact details.
+                        var uniqueID = signal.contactUniqueID;
+                        var applicationID = signal.contactApplicationID;
+
+                        // Details.
+                        var details = {
+                            contactUniqueID: uniqueID,
+                            contactApplicationID: applicationID,
+                            clientDetails: signal.details
+                        };
+
+                        // Send message.
+                        myParent.emit('signallingEventDetails', "Signalling contact details.", this, details);
+                    }
                     else {
                         // If the client is available
                         if (signal.available && signal.available === true) {
@@ -1483,6 +1538,30 @@ Signalling.prototype.sendClientState = function (contactUniqueID, contactApplica
             "contactApplicationID": contactApplicationID,
             "clientState": true,
             "state": state
+        })
+    );
+};
+
+/**
+ * Send the current details of the client to the contact.
+ * 
+ * @param {string}  contactUniqueID         The contact unique id.
+ * @param {string}  contactApplicationID    The contact application id.
+ * @param {string}  details                 The client details.
+ */
+Signalling.prototype.sendClientDetails = function (contactUniqueID, contactApplicationID, details) {
+
+    // If the socket is not open.
+    if (this.webSocket.readyState !== this.webSocket.OPEN) return;
+    
+    // Send to the signalling provider.
+    this.webSocket.send(
+        JSON.stringify(
+        {
+            "contactUniqueID": contactUniqueID,
+            "contactApplicationID": contactApplicationID,
+            "clientDetails": true,
+            "details": details
         })
     );
 };
@@ -2330,6 +2409,37 @@ WebRtcAdapter.prototype.sendMessageToContact = function (uniqueID, applicationID
 };
 
 /**
+ * Send a details to all contacts.
+ * 
+ * @param {string}  details         The details to sent.
+ */
+WebRtcAdapter.prototype.sendDetailsToAllContacts = function (details) {
+    this.contactPeers.forEach(function (peer) {
+
+        // Send the details to the peer.
+        peer.sendDetails(details);
+    });
+};
+
+/**
+ * Send a details to the contact.
+ * 
+ * @param {string}  uniqueID        The contact unique id.
+ * @param {string}  applicationID   The contact application id.
+ * @param {string}  details         The details to sent.
+ * @param {boolean}  isData         True if contact is only data channel; else false.
+ */
+WebRtcAdapter.prototype.sendDetailsToContact = function (uniqueID, applicationID, details, isData) {
+    this.contactPeers.forEach(function (peer) {
+        if (peer.uniqueID === uniqueID && peer.applicationID === applicationID && peer.isData === isData) {
+
+            // Send the details to the peer.
+            peer.sendDetails(details);
+        }
+    });
+};
+
+/**
  * Send end of call to all contacts.
  */
 WebRtcAdapter.prototype.sendEndCallToAllContacts = function () {
@@ -2938,6 +3048,23 @@ function WebRTC(webRtcOptions) {
 
         // Emit the message.
         self.emit('signalState', argum);
+    });
+
+    // Signalling event.
+    this.webrtcadapter.on('signallingEventDetails', function (text, signalling, arg) {
+        
+        // Get the contact.
+        var contact = self.createContact(arg.contactUniqueID, arg.contactApplicationID);
+        contact.setContactDetails(arg.clientDetails);
+
+        var argum = {
+            contact: contact,
+            details: arg.clientDetails,
+            text: text
+        };
+
+        // Emit the message.
+        self.emit('signalDetails', argum);
     });
 
     // Signalling event.
