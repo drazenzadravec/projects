@@ -815,11 +815,12 @@ export class WebRTC {
      * @param {boolean}     available       True if this client is avaliable for contact; else false.
      * @param {boolean}     broadcast       True if this client allows the unique id to be broadcast; else false.
      * @param {boolean}     broadcastAppID  True if this client allows the application id to be broadcast; else false.
+     * @param {string}      accessToken     The access token.
      */
-    changeClientSettings(uniqueID: string, applicationID: string, available: boolean, broadcast: boolean, broadcastAppID: boolean): void {
+    changeClientSettings(uniqueID: string, applicationID: string, available: boolean, broadcast: boolean, broadcastAppID: boolean, accessToken: string): void {
 
         // Change client settings
-        this.webrtcadapter.changeClientSettings(uniqueID, applicationID, available, broadcast, broadcastAppID);
+        this.webrtcadapter.changeClientSettings(uniqueID, applicationID, available, broadcast, broadcastAppID, accessToken);
     }
 
     /**

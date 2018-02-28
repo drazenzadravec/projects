@@ -662,10 +662,11 @@ var WebRTC = (function () {
      * @param {boolean}     available       True if this client is avaliable for contact; else false.
      * @param {boolean}     broadcast       True if this client allows the unique id to be broadcast; else false.
      * @param {boolean}     broadcastAppID  True if this client allows the application id to be broadcast; else false.
+     * @param {string}      accessToken     The access token.
      */
-    WebRTC.prototype.changeClientSettings = function (uniqueID, applicationID, available, broadcast, broadcastAppID) {
+    WebRTC.prototype.changeClientSettings = function (uniqueID, applicationID, available, broadcast, broadcastAppID, accessToken) {
         // Change client settings
-        this.webrtcadapter.changeClientSettings(uniqueID, applicationID, available, broadcast, broadcastAppID);
+        this.webrtcadapter.changeClientSettings(uniqueID, applicationID, available, broadcast, broadcastAppID, accessToken);
     };
     /**
      * Create the local audio and video stream.
