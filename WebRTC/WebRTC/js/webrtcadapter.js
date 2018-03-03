@@ -682,6 +682,9 @@ WebRtcAdapter.prototype.createStreamCapture = function (captureMediaSource) {
  *      hd =    video: {width: {exact: 1280}, height: {exact: 720}}
  *      fullHd =video: {width: {exact: 1920}, height: {exact: 1080}}
  *      fourK = video: {width: {exact: 4096}, height: {exact: 2160}}
+ * 
+ *              audio: {deviceId: audioSource ? {exact: audioSource} : undefined}
+ *              video: {deviceId: videoSource ? {exact: videoSource} : undefined}
  */
 WebRtcAdapter.prototype.createStreamEx = function (constraints) {
 
@@ -699,6 +702,108 @@ WebRtcAdapter.prototype.createStreamEx = function (constraints) {
         function (error) {
             localLogger.error(error);
     });
+}
+
+/**
+ * Get all audio input devices.
+ * 
+ * @return {Array}    The array of audio input devices.
+ */
+WebRtcAdapter.prototype.getAudioInputDevices = function () {
+
+    // Create local refs.
+    var localLogger = this.logger;
+    var devices = [];
+
+    // Get the local devices.
+    navigator.mediaDevices.enumerateDevices().then(
+        function (deviceInfos) {
+            
+            // For each device.
+            for (var i = 0; i !== deviceInfos.length; ++i) {
+                // Current device.
+                var deviceInfo = deviceInfos[i];
+                
+                // If audio input.
+                if (deviceInfo.kind === 'audioinput') {
+                    devices.push(deviceInfo);
+                }
+            }
+        }).catch(
+        function (error) {
+            localLogger.error(error);
+    });
+
+    // Return the list.
+    return devices;
+}
+
+/**
+ * Get all audio output devices.
+ * 
+ * @return {Array}    The array of audio output devices.
+ */
+WebRtcAdapter.prototype.getAudioOutputDevices = function () {
+
+    // Create local refs.
+    var localLogger = this.logger;
+    var devices = [];
+
+    // Get the local devices.
+    navigator.mediaDevices.enumerateDevices().then(
+        function (deviceInfos) {
+            
+            // For each device.
+            for (var i = 0; i !== deviceInfos.length; ++i) {
+                // Current device.
+                var deviceInfo = deviceInfos[i];
+                
+                // If audio output.
+                if (deviceInfo.kind === 'audiooutput') {
+                    devices.push(deviceInfo);
+                }
+            }
+        }).catch(
+        function (error) {
+            localLogger.error(error);
+    });
+
+    // Return the list.
+    return devices;
+}
+
+/**
+ * Get all video input devices.
+ * 
+ * @return {Array}    The array of video input devices.
+ */
+WebRtcAdapter.prototype.getVideoInputDevices = function () {
+
+    // Create local refs.
+    var localLogger = this.logger;
+    var devices = [];
+
+    // Get the local devices.
+    navigator.mediaDevices.enumerateDevices().then(
+        function (deviceInfos) {
+            
+            // For each device.
+            for (var i = 0; i !== deviceInfos.length; ++i) {
+                // Current device.
+                var deviceInfo = deviceInfos[i];
+                
+                // If video input.
+                if (deviceInfo.kind === 'videoinput') {
+                    devices.push(deviceInfo);
+                }
+            }
+        }).catch(
+        function (error) {
+            localLogger.error(error);
+    });
+
+    // Return the list.
+    return devices;
 }
 
 /**
