@@ -836,6 +836,24 @@ export class WebRTC {
     }
 
     /**
+     * Create the local media stream.
+     * 
+     * @param {string}      audioSource   The audio source.
+     * @param {string}      videoSource   The video source.
+     */
+    createStreamSource(audioSource: any, videoSource: any): void {
+
+        // Create the constraint.
+        let constraints = {
+            audio: {deviceId: audioSource ? {exact: audioSource} : undefined},
+            video: {deviceId: videoSource ? {exact: videoSource} : undefined}
+        };
+
+        // Create stream.
+        this.webrtcadapter.createStreamEx(constraints);
+    }
+
+    /**
      * Create a local capture media, screen or application window (Note only for Firefox).
      *
      * @param {string}     captureMediaSource   The capture media source ('screen' or 'window').
@@ -857,6 +875,9 @@ export class WebRTC {
      *      hd =    video: {width: {exact: 1280}, height: {exact: 720}}
      *      fullHd =video: {width: {exact: 1920}, height: {exact: 1080}}
      *      fourK = video: {width: {exact: 4096}, height: {exact: 2160}}
+     * 
+     *              audio: {deviceId: audioSource ? {exact: audioSource} : undefined}
+     *              video: {deviceId: videoSource ? {exact: videoSource} : undefined}
      */
     createStreamEx(constraints: any): void {
 
@@ -873,6 +894,120 @@ export class WebRTC {
 
         // Assign the video element.
         this.webrtcadapter.setLocalVideoElement(videoElement);
+    }
+
+    /**
+     * Get all audio input sources.
+     * 
+     * @return {Array}    The array of audio input sources.
+     */
+    getAudioInputSources(): Array<any> {
+
+        // Get all devices
+        let deviceIndex = 1;
+        let sources = [];
+        let devices = this.webrtcadapter.getAudioInputDevices();
+
+        // For each device.
+        devices.forEach(function (device) {
+
+            let info = { 
+                deviceID: device.deviceId,
+                deviceText: device.label || 'microphone ' + deviceIndex
+            };
+
+            // Add to source.
+            sources.push(info);
+            deviceIndex++;
+        });
+
+        // Return the list.
+        return sources;
+    }
+
+    /**
+     * Get all audio output sources.
+     * 
+     * @return {Array}    The array of audio output sources.
+     */
+    getAudioOutputSources(): Array<any> {
+
+        // Get all devices
+        let deviceIndex = 1;
+        let sources = [];
+        let devices = this.webrtcadapter.getAudioOutputDevices();
+
+        // For each device.
+        devices.forEach(function (device) {
+
+            let info = { 
+                deviceID: device.deviceId,
+                deviceText: device.label || 'speaker ' + deviceIndex
+            };
+
+            // Add to source.
+            sources.push(info);
+            deviceIndex++;
+        });
+
+        // Return the list.
+        return sources;
+    }
+
+    /**
+     * Get all video input sources.
+     * 
+     * @return {Array}    The array of video input sources.
+     */
+    getVideoInputSources(): Array<any> {
+
+        // Get all devices
+        let deviceIndex = 1;
+        let sources = [];
+        let devices = this.webrtcadapter.getVideoInputDevices();
+
+        // For each device.
+        devices.forEach(function (device) {
+
+            let info = { 
+                deviceID: device.deviceId,
+                deviceText: device.label || 'camera ' + deviceIndex
+            };
+
+            // Add to source.
+            sources.push(info);
+            deviceIndex++;
+        });
+
+        // Return the list.
+        return sources;
+    }
+
+    /**
+     * Attach audio output device to video element using device/sink ID.
+     * 
+     * @param {object}      videoElement    The video element.
+     * @param {string}      deviceID        The source device id.
+     */
+    attachSinkIdVideoElement(videoElement: any, deviceID: string): void {
+
+        // If no sink id applied.
+        if (typeof videoElement.sinkId !== 'undefined') {
+
+            // Set the device ID.
+            videoElement.setSinkId(deviceID)
+            .then(function() {
+                // Success.
+            })
+            .catch(function(e) {
+        
+                // Log the error.
+                this.logger.error("Error assigning device ID: " + e);
+            });
+        } 
+        else {
+            this.logger.error("Browser does not support output device selection.");
+        }
     }
 
     /**
