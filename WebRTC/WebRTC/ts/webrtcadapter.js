@@ -591,9 +591,9 @@ var WebRtcAdapter = (function () {
     /**
      * Get all audio input devices.
      *
-     * @return {Array}    The array of audio input devices.
+     * @param {object}     callback   The callback function.
      */
-    WebRtcAdapter.prototype.getAudioInputDevices = function () {
+    WebRtcAdapter.prototype.getAudioInputDevices = function (callback) {
         // Create local refs.
         var localLogger = this.logger;
         var devices = [];
@@ -608,18 +608,18 @@ var WebRtcAdapter = (function () {
                     devices.push(deviceInfo);
                 }
             }
+            // Send callback.
+            callback(devices);
         }).catch(function (error) {
             localLogger.error(error);
         });
-        // Return the list.
-        return devices;
     };
     /**
      * Get all audio output devices.
      *
-     * @return {Array}    The array of audio output devices.
+     * @param {object}     callback   The callback function.
      */
-    WebRtcAdapter.prototype.getAudioOutputDevices = function () {
+    WebRtcAdapter.prototype.getAudioOutputDevices = function (callback) {
         // Create local refs.
         var localLogger = this.logger;
         var devices = [];
@@ -634,18 +634,18 @@ var WebRtcAdapter = (function () {
                     devices.push(deviceInfo);
                 }
             }
+            // Send callback.
+            callback(devices);
         }).catch(function (error) {
             localLogger.error(error);
         });
-        // Return the list.
-        return devices;
     };
     /**
      * Get all video input devices.
      *
-     * @return {Array}    The array of video input devices.
+     * @param {object}     callback   The callback function.
      */
-    WebRtcAdapter.prototype.getVideoInputDevices = function () {
+    WebRtcAdapter.prototype.getVideoInputDevices = function (callback) {
         // Create local refs.
         var localLogger = this.logger;
         var devices = [];
@@ -660,11 +660,11 @@ var WebRtcAdapter = (function () {
                     devices.push(deviceInfo);
                 }
             }
+            // Send callback.
+            callback(devices);
         }).catch(function (error) {
             localLogger.error(error);
         });
-        // Return the list.
-        return devices;
     };
     /**
      * Set the local video element.

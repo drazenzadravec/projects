@@ -720,9 +720,9 @@ export class WebRtcAdapter {
     /**
      * Get all audio input devices.
      * 
-     * @return {Array}    The array of audio input devices.
+     * @param {object}     callback   The callback function.
      */
-    getAudioInputDevices(): Array<any> {
+    getAudioInputDevices(callback) {
 
         // Create local refs.
         let localLogger = this.logger;
@@ -742,21 +742,22 @@ export class WebRtcAdapter {
                         devices.push(deviceInfo);
                     }
                 }
+
+                // Send callback.
+                callback(devices);
+
             }).catch(
             function (error) {
                 localLogger.error(error);
         });
-
-        // Return the list.
-        return devices;
     }
 
     /**
      * Get all audio output devices.
      * 
-     * @return {Array}    The array of audio output devices.
+     * @param {object}     callback   The callback function.
      */
-    getAudioOutputDevices(): Array<any> {
+    getAudioOutputDevices(callback) {
 
         // Create local refs.
         let localLogger = this.logger;
@@ -776,21 +777,22 @@ export class WebRtcAdapter {
                         devices.push(deviceInfo);
                     }
                 }
+
+                // Send callback.
+                callback(devices);
+
             }).catch(
             function (error) {
                 localLogger.error(error);
         });
-
-        // Return the list.
-        return devices;
     }
 
     /**
      * Get all video input devices.
      * 
-     * @return {Array}    The array of video input devices.
+     * @param {object}     callback   The callback function.
      */
-    getVideoInputDevices(): Array<any> {
+    getVideoInputDevices(callback) {
 
         // Create local refs.
         let localLogger = this.logger;
@@ -810,13 +812,14 @@ export class WebRtcAdapter {
                         devices.push(deviceInfo);
                     }
                 }
+
+                // Send callback.
+                callback(devices);
+
             }).catch(
             function (error) {
                 localLogger.error(error);
         });
-
-        // Return the list.
-        return devices;
     }
 
     /**

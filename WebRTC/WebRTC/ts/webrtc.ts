@@ -899,88 +899,94 @@ export class WebRTC {
     /**
      * Get all audio input sources.
      * 
-     * @return {Array}    The array of audio input sources.
+     * @param {object}     callback   The callback function.
      */
-    getAudioInputSources(): Array<any> {
+    getAudioInputSources(callback) {
 
         // Get all devices
         let deviceIndex = 1;
         let sources = [];
-        let devices = this.webrtcadapter.getAudioInputDevices();
 
-        // For each device.
-        devices.forEach(function (device) {
+        // Get the device list.
+        this.webrtcadapter.getAudioInputDevices(function(devices) { 
+            // For each device.
+            devices.forEach(function (device) {
 
-            let info = { 
-                deviceID: device.deviceId,
-                deviceText: device.label || 'microphone ' + deviceIndex
-            };
+                let info = { 
+                    deviceID: device.deviceId,
+                    deviceText: device.label || 'microphone ' + deviceIndex
+                };
 
-            // Add to source.
-            sources.push(info);
-            deviceIndex++;
+                // Add to source.
+                sources.push(info);
+                deviceIndex++;
+            });
+
+            // Send callback.
+            callback(sources);
         });
-
-        // Return the list.
-        return sources;
     }
 
     /**
      * Get all audio output sources.
      * 
-     * @return {Array}    The array of audio output sources.
+     * @param {object}     callback   The callback function.
      */
-    getAudioOutputSources(): Array<any> {
+    getAudioOutputSources(callback) {
 
         // Get all devices
         let deviceIndex = 1;
         let sources = [];
-        let devices = this.webrtcadapter.getAudioOutputDevices();
 
-        // For each device.
-        devices.forEach(function (device) {
+        // Get the device list.
+        this.webrtcadapter.getAudioOutputDevices(function(devices) { 
+            // For each device.
+            devices.forEach(function (device) {
 
-            let info = { 
-                deviceID: device.deviceId,
-                deviceText: device.label || 'speaker ' + deviceIndex
-            };
+                let info = { 
+                    deviceID: device.deviceId,
+                    deviceText: device.label || 'speaker ' + deviceIndex
+                };
 
-            // Add to source.
-            sources.push(info);
-            deviceIndex++;
+                // Add to source.
+                sources.push(info);
+                deviceIndex++;
+            });
+
+            // Send callback.
+            callback(sources);
         });
-
-        // Return the list.
-        return sources;
     }
 
     /**
      * Get all video input sources.
      * 
-     * @return {Array}    The array of video input sources.
+     * @param {object}     callback   The callback function.
      */
-    getVideoInputSources(): Array<any> {
+    getVideoInputSources(callback) {
 
         // Get all devices
         let deviceIndex = 1;
         let sources = [];
-        let devices = this.webrtcadapter.getVideoInputDevices();
 
-        // For each device.
-        devices.forEach(function (device) {
+        // Get the device list.
+        this.webrtcadapter.getVideoInputDevices(function(devices) { 
+            // For each device.
+            devices.forEach(function (device) {
 
-            let info = { 
-                deviceID: device.deviceId,
-                deviceText: device.label || 'camera ' + deviceIndex
-            };
+                let info = { 
+                    deviceID: device.deviceId,
+                    deviceText: device.label || 'camera ' + deviceIndex
+                };
 
-            // Add to source.
-            sources.push(info);
-            deviceIndex++;
+                // Add to source.
+                sources.push(info);
+                deviceIndex++;
+            });
+
+            // Send callback.
+            callback(sources);
         });
-
-        // Return the list.
-        return sources;
     }
 
     /**
