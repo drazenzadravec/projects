@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -14,46 +14,7 @@
 </head>
 <body>
 	<div id="container">
-		<div>
-			<div>
-				<input id="startCamButton" type="button" value="Start Video & Audio" class="ui-button ui-corner-all ui-widget" />
-				<input id="useVideo" type="checkbox" checked></input>
-				<label for="useVideo">Use Video</label>
-				<input id="useAudio" type="checkbox" checked></input>
-				<label for="useAudio">Use Audio</label>
-				<input id="useScreen" type="checkbox"></input>
-				<label for="useScreen">Use Screen</label>
-				<input id="useWindow" type="checkbox"></input>
-				<label for="useWindow">Use Window</label>
-			</div>
-			<div>
-				<input id="stopCamButton" type="button" value="Stop Video & Audio" class="ui-button ui-corner-all ui-widget" />
-				<input id="videoLocalShow" type="button" value="Local Video" class="ui-button ui-corner-all ui-widget" />
-				<input id="videoRemoteShow" type="button" value="Remote Video(s)" class="ui-button ui-corner-all ui-widget" />
-			</div>
-			<div>
-				<input id="toggleMuteAudioButton" type="checkbox" >Mute Video & Audio</input>	
-			</div>
-			<div>
-				<label for="localVolumeControl" class="labelClass1">Local Volume Control</label>
-				<input id="localVolumeControl" type="range" min="0" max="100" step="1"></input>
-			</div>
-		</div>
-		<div class="divSpacer"></div>
-		<div>
-			<div>
-				<input id="startRecodingButton" type="button" value="Start Recording Video & Audio" class="ui-button ui-corner-all ui-widget" />
-				<input id="stopRecodingButton" type="button" value="Stop Recording Video & Audio" class="ui-button ui-corner-all ui-widget" />
-			</div>
-		</div>
-		<div class="divSpacer"></div>
-		<div>
-			<div class="divAlertText">
-				<div id="alertText" ></div>
-			</div>	
-		</div>
-		<div class="divSpacer"></div>
-		<div>
+		<div class="divAlertText">
 			<div>
 				<div class="divID">
 					<label class="labelClass" >Unique ID</label>		
@@ -86,29 +47,87 @@
 				<input id="clientStateButton" type="button" value="Send Your State" class="ui-button ui-corner-all ui-widget" />
 			</div>
 		</div>
+		<div class="divAlertText">
+			<div id="alertText" ></div>
+		</div>	
 		<div class="divSpacer"></div>
-		<div>
+		<div class="divAlertText">
+			<div>
+				<input id="startCamButton" type="button" value="Start Video & Audio" class="ui-button ui-corner-all ui-widget" />
+				<input id="useVideo" type="checkbox" checked></input>
+				<label for="useVideo">Use Video</label>
+				<input id="useAudio" type="checkbox" checked></input>
+				<label for="useAudio">Use Audio</label>
+				<input id="useScreen" type="checkbox"></input>
+				<label for="useScreen">Use Screen</label>
+				<input id="useWindow" type="checkbox"></input>
+				<label for="useWindow">Use Window</label>
+			</div>
+			<div>
+				<input id="stopCamButton" type="button" value="Stop Video & Audio" class="ui-button ui-corner-all ui-widget" />
+				<input id="videoLocalShow" type="button" value="Local Video" class="ui-button ui-corner-all ui-widget" />
+				<input id="videoRemoteShow" type="button" value="Remote Video(s)" class="ui-button ui-corner-all ui-widget" />
+			</div>
+			<div>
+				<input id="toggleMuteAudioButton" type="checkbox" >Mute Video & Audio</input>	
+			</div>
+			<div class="divSpacer"></div>
+			<div>
+				<label for="localVolumeControl" class="labelClass1">Local Volume Control</label>
+				<input id="localVolumeControl" type="range" min="0" max="100" step="1"></input>
+			</div>
+			<div class="divSpacer"></div>
+			<div>
+				<label for="audioSource">Audio input source: </label>
+				<select id="audioSource"></select>
+			</div>
+			<div>
+				<label for="audioOutput">Audio output destination: </label>
+				<select id="audioOutput"></select>
+			</div>
+			<div>
+				<label for="videoSource">Video source: </label>
+				<select id="videoSource"></select>
+			</div>
+		</div>
+		<div class="divSpacer"></div>
+		<div class="divAlertText">
+			<div>
+				<input id="videoCallButton" type="button" value="Join Conference" class="ui-button ui-corner-all ui-widget" />
+				<input id="endCallButton" type="button" value="Leave Conference" class="ui-button ui-corner-all ui-widget" />
+				<input id="contactAvailableButton" type="button" value="Is Contact Available" class="ui-button ui-corner-all ui-widget" />
+			</div>
+			<div class="divAlertTextInt">
+				<div id="alertTextBack" ></div>
+			</div>
+		</div>
+		<div class="divSpacer"></div>
+		<div class="divAlertText">
 			<div>
 				<div class="divID1" >
 					<label class="labelClass1" >Contact Unique ID</label>		
 					<input id="contactUniqueID" type="text" class="textInput" />
 				</div>
+				</div>
+				<div>
+					<div class="divID1" >
+						<label class="labelClass1" >Contact Application ID</label>		
+						<input id="contactApplicationID" type="text" class="textInput" />
+					</div>
+				</div>
+			<div>
+				<input id="contactSendMessage" type="text" class="textSendMessage" />
 			</div>
 			<div>
-				<div class="divID1" >
-					<label class="labelClass1" >Contact Application ID</label>		
-					<input id="contactApplicationID" type="text" class="textInput" />
-				</div>
+				<input id="contactSendMessageButton" type="button" value="Send Message To Contact" class="ui-button ui-corner-all ui-widget" />
+				<input id="contactSendMessageClearButton" type="button" value="Clear Sent Message(s)" class="ui-button ui-corner-all ui-widget" />
 			</div>
-			<div class="divAlertText">
-				<div id="alertTextBack" ></div>
+			<div class="divAlertTextInt">
+				<div id="alertTextMessage" ></div>
 			</div>
-			<input id="videoCallButton" type="button" value="Join Conference" class="ui-button ui-corner-all ui-widget" />
-			<input id="endCallButton" type="button" value="Leave Conference" class="ui-button ui-corner-all ui-widget" />
-			<input id="contactAvailableButton" type="button" value="Is Contact Available" class="ui-button ui-corner-all ui-widget" />
 		</div>
 		<div class="divSpacer"></div>
-		<div>
+		<div class="divAlertText">
 			<section>
 				<form id="fileInfo">
 					<input type="file" id="fileInput" name="files" />
@@ -126,26 +145,25 @@
 			</section>
 		</div>
 		<div class="divSpacer"></div> 
-		<div>
-			<div class="divAlertText">
-				<div id="alertTextMessage" ></div>
-			</div>
+		<div class="divAlertText">
 			<div>
-				<input id="contactSendMessage" type="text" class="textSendMessage" />
+				<input id="startRecodingButton" type="button" value="Start Recording Video & Audio" class="ui-button ui-corner-all ui-widget" />
+				<input id="stopRecodingButton" type="button" value="Stop Recording Video & Audio" class="ui-button ui-corner-all ui-widget" />
 			</div>
-			<input id="contactSendMessageButton" type="button" value="Send Message To Contact" class="ui-button ui-corner-all ui-widget" />
-			<input id="contactSendMessageClearButton" type="button" value="Clear Sent Message(s)" class="ui-button ui-corner-all ui-widget" />
 		</div>
 		<div class="divSpacer"></div>
-		<div>
-			<input id="contactApplicationIDListButton" type="button" value="Application ID List" class="ui-button ui-corner-all ui-widget"/>
-			<input id="contactUniqueIDListButton" type="button" value="Unique ID List" class="ui-button ui-corner-all ui-widget"/>
-			<input id="contactGroupListButton" type="button" value="Group ID List" class="ui-button ui-corner-all ui-widget"/>
-			<input id="contactClearListButton" type="button" value="Clear Contact List" class="ui-button ui-corner-all ui-widget"/>
+		<div class="divAlertText">
+			<div>
+				<input id="contactApplicationIDListButton" type="button" value="Application ID List" class="ui-button ui-corner-all ui-widget"/>
+				<input id="contactUniqueIDListButton" type="button" value="Unique ID List" class="ui-button ui-corner-all ui-widget"/>
+				<input id="contactGroupListButton" type="button" value="Group ID List" class="ui-button ui-corner-all ui-widget"/>
+				<input id="contactClearListButton" type="button" value="Clear Contact List" class="ui-button ui-corner-all ui-widget"/>
+			</div>
 			<div class="divAlertListText">
 				<div id="alertTextList" ></div>
 			</div>
 		</div>
+		<div class="divSpacer"></div>
 		<div id="dialogVideoLocal" >
 			<div id="resizableLocal" >
 				<video id="localVideo" autoplay playsInline controls width="380" height="340" ></video>
@@ -172,7 +190,6 @@
 			</div>
 		</div>
 	</div>
-
 	<script src="js/edge.js"></script>
 	<script src="js/lib/adapter.js"></script>
 	<script src="js/lib/get_screenId.js"></script>
@@ -323,6 +340,7 @@
 						// Change remote video title.
 						var title = uniqueID + " from " + applicationID;
 						contactUniqueIDElement.value = uniqueID;
+						contactApplicationIDElement.value = applicationID;
 						$('#' + dialogVideoRemote).dialog({title: "Remote Video - " + title});
 						$("#" + dialogVideoRemote).dialog("open");
 				});
