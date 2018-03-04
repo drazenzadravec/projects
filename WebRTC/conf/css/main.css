@@ -57,8 +57,12 @@ div {
   width: 600px; border: rgba(0, 0, 0, 0.349); border-style: solid; border-width: 1px; 
 }
 
+.divAlertTextInt { 
+  width: 590px; border: rgba(0, 0, 0, 0.349); border-style: solid; border-width: 1px; 
+}
+
 .divAlertListText { 
-  width: 600px; border: rgba(0, 0, 0, 0.349); border-style: solid; border-width: 1px; 
+  width: 590px; border: rgba(0, 0, 0, 0.349); border-style: solid; border-width: 1px; 
 }
 
 .labelClass { 
@@ -67,10 +71,6 @@ div {
 
 .labelClass1 { 
   display: block; float: left; width: 160px; 
-}
-
-.contactList { 
-  /*width: 360px;*/
 }
 
 .buttonContact { 
@@ -90,7 +90,7 @@ div {
 }
 
 .textSendMessage { 
-  width: 600px;
+  width: 590px; border: rgb(255, 0, 0); border-style: solid; border-width: 1px;
 }
 
 div#container { 
