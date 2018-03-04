@@ -10,21 +10,21 @@ function pageLoad() {
     // WebRTC options.
     var options = { 
         debug: true,
-        signallingURL: "wss://[HOST IP]:[PORT]/[App]/[File]",
+        signallingURL: "wss://192.168.0.200:8822",
         peerConnectionConfiguration: {
             iceServers: [ 
         		{ 
-                    "urls": "stun:[HOST IP]:[PORT]"
+                    "urls": "stun:192.168.0.200:8830"
         		},
                 {
-                    "urls": "turn:[HOST IP]:[PORT]?transport=udp",
-                    "username": "[username]",
-                    "credential": "[password]"
+                    "urls": "turn:192.168.0.200:8830?transport=udp",
+                    "username": "drazen",
+                    "credential": "drazen8"
                 },
                 {
-                    "urls": "turn:[HOST IP]:[PORT]?transport=tcp",
-                    "username": "[username]",
-                    "credential": "[password]"
+                    "urls": "turn:192.168.0.200:8830?transport=tcp",
+                    "username": "drazen",
+                    "credential": "drazen8"
                 }
         	]
         } 
@@ -362,6 +362,10 @@ function pageBeforeUnload() {
 var localVideoElement = null;
 var remoteVideoElement = null;
 
+var audioInputSelect = null;
+var audioOutputSelect = null;
+var videoSelect = null;
+
 var uniqueIDElement = null;
 var applicationIDElement = null;
 var availableElement = null;
@@ -468,6 +472,11 @@ function init() {
     localVolumeControlElement = document.getElementById("localVolumeControl");
     remoteVolumeControlElement = document.getElementById("remoteVolumeControl");
 
+    // Selection.
+    audioInputSelect = document.getElementById("audioSource");
+    audioOutputSelect = document.getElementById("audioOutput");
+    videoSelect = document.getElementById("videoSource");
+
     // File transfer.
     statusMessage = document.querySelector('span#status');
     fileInput = document.querySelector('input#fileInput');
@@ -529,6 +538,37 @@ function init() {
     // Set the local video volume to 0.
     localVolumeControlElement.value = 0;
     localVideoElement.volume = 0;
+
+    // List a  devices.
+    webrtc.getAudioInputSources(function(sources) {
+        // For each audio input source.
+        sources.forEach(function (info) {
+            var option = document.createElement('option');
+            option.value = info.deviceID;
+            option.text = info.deviceText;
+            audioInputSelect.appendChild(option);
+        });
+    });
+
+    webrtc.getAudioOutputSources(function(sources) {
+        // For each audio output source.
+        sources.forEach(function (info) {
+            var option = document.createElement('option');
+            option.value = info.deviceID;
+            option.text = info.deviceText;
+            audioOutputSelect.appendChild(option);
+        });
+    });
+
+    webrtc.getVideoInputSources(function(sources) {
+        // For each video input source.
+        sources.forEach(function (info) {
+            var option = document.createElement('option');
+            option.value = info.deviceID;
+            option.text = info.deviceText;
+            videoSelect.appendChild(option);
+        });
+    });
 };
 
 /**
