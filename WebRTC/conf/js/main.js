@@ -422,6 +422,7 @@ var localVideoElement = null;
 var audioInputSelect = null;
 var audioOutputSelect = null;
 var videoSelect = null;
+var selectors = null;
 
 var uniqueIDElement = null;
 var applicationIDElement = null;
@@ -587,6 +588,7 @@ function init() {
     audioInputSelect = document.getElementById("audioSource");
     audioOutputSelect = document.getElementById("audioOutput");
     videoSelect = document.getElementById("videoSource");
+    selectors = [audioInputSelect, audioOutputSelect, videoSelect];
 
     // File transfer.
     statusMessage = document.querySelector('span#status');
@@ -650,6 +652,26 @@ function init() {
     localVolumeControlElement.value = 0;
     localVideoElement.volume = 0;
 
+    // Get audio and video source devices.
+    getSourceDevices();
+};
+
+/**
+ * Get audio and video source devices.
+ */
+function getSourceDevices()
+{
+    // Handles being called several times to update labels. Preserve values.
+    var values = selectors.map(function(select) {
+        return select.value;
+    });
+
+    selectors.forEach(function(select) {
+        while (select.firstChild) {
+            select.removeChild(select.firstChild);
+        }
+    });
+
     // List a  devices.
     webrtc.getAudioInputSources(function(sources) {
         // For each audio input source.
@@ -680,7 +702,15 @@ function init() {
             videoSelect.appendChild(option);
         });
     });
-};
+
+    selectors.forEach(function(select, selectorIndex) {
+        if (Array.prototype.slice.call(select.childNodes).some(function(n) {
+            return n.value === values[selectorIndex];
+        })) {
+            select.value = values[selectorIndex];
+        }
+    });
+}
 
 /**
  * Create a new contact.
