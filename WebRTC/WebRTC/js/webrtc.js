@@ -889,88 +889,94 @@ WebRTC.prototype.setLocalVideoElement = function (videoElement) {
 /**
  * Get all audio input sources.
  * 
- * @return {Array}    The array of audio input sources.
+ * @param {object}     callback   The callback function.
  */
-WebRTC.prototype.getAudioInputSources = function () {
+WebRTC.prototype.getAudioInputSources = function (callback) {
 
     // Get all devices
     var deviceIndex = 1;
     var sources = [];
-    var devices = this.webrtcadapter.getAudioInputDevices();
 
-    // For each device.
-    devices.forEach(function (device) {
+    // Get the device list.
+    this.webrtcadapter.getAudioInputDevices(function(devices) { 
+        // For each device.
+        devices.forEach(function (device) {
 
-        var info = { 
-            deviceID: device.deviceId,
-            deviceText: device.label || 'microphone ' + deviceIndex
-        };
+            var info = { 
+                deviceID: device.deviceId,
+                deviceText: device.label || 'microphone ' + deviceIndex
+            };
 
-        // Add to source.
-        sources.push(info);
-        deviceIndex++;
+            // Add to source.
+            sources.push(info);
+            deviceIndex++;
+        });
+
+        // Send callback.
+        callback(sources);
     });
-
-    // Return the list.
-    return sources;
 }
 
 /**
  * Get all audio output sources.
  * 
- * @return {Array}    The array of audio output sources.
+ * @param {object}     callback   The callback function.
  */
-WebRTC.prototype.getAudioOutputSources = function () {
+WebRTC.prototype.getAudioOutputSources = function (callback) {
 
     // Get all devices
     var deviceIndex = 1;
     var sources = [];
-    var devices = this.webrtcadapter.getAudioOutputDevices();
 
-    // For each device.
-    devices.forEach(function (device) {
+    // Get the device list.
+    this.webrtcadapter.getAudioOutputDevices(function(devices) { 
+        // For each device.
+        devices.forEach(function (device) {
 
-        var info = { 
-            deviceID: device.deviceId,
-            deviceText: device.label || 'speaker ' + deviceIndex
-        };
+            var info = { 
+                deviceID: device.deviceId,
+                deviceText: device.label || 'speaker ' + deviceIndex
+            };
 
-        // Add to source.
-        sources.push(info);
-        deviceIndex++;
+            // Add to source.
+            sources.push(info);
+            deviceIndex++;
+        });
+
+        // Send callback.
+        callback(sources);
     });
-
-    // Return the list.
-    return sources;
 }
 
 /**
  * Get all video input sources.
  * 
- * @return {Array}    The array of video input sources.
+ * @param {object}     callback   The callback function.
  */
-WebRTC.prototype.getVideoInputSources = function () {
+WebRTC.prototype.getVideoInputSources = function (callback) {
 
     // Get all devices
     var deviceIndex = 1;
     var sources = [];
-    var devices = this.webrtcadapter.getVideoInputDevices();
 
-    // For each device.
-    devices.forEach(function (device) {
+    // Get the device list.
+    this.webrtcadapter.getVideoInputDevices(function(devices) { 
+        // For each device.
+        devices.forEach(function (device) {
 
-        var info = { 
-            deviceID: device.deviceId,
-            deviceText: device.label || 'camera ' + deviceIndex
-        };
+            var info = { 
+                deviceID: device.deviceId,
+                deviceText: device.label || 'camera ' + deviceIndex
+            };
 
-        // Add to source.
-        sources.push(info);
-        deviceIndex++;
+            // Add to source.
+            sources.push(info);
+            deviceIndex++;
+        });
+
+        // Send callback.
+        callback(sources);
     });
-
-    // Return the list.
-    return sources;
 }
 
 /**
