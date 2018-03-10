@@ -1007,6 +1007,36 @@ WebRTC.prototype.attachSinkIdVideoElement = function (videoElement, deviceID) {
 };
 
 /**
+ * Take a picture of what is in the video element,
+ * using the canvas element as the base context.
+ * 
+ * @param {object}      videoElement    The video element (get the width and height of the video).
+ * @param {object}      canvasElement   The canvas element (set the width and height of the canvas).
+ * 
+ * @return {object}     The picture data; else null.
+ */
+WebRTC.prototype.takePicture = function (videoElement, canvasElement) {
+
+    var data = null;
+    var width = videoElement.videoWidth;
+    var height = videoElement.videoHeight;
+
+    // Get the canvas contaxt.
+    var context = canvasElement.getContext('2d');
+    canvasElement.width = width;
+    canvasElement.height = height;
+
+    // Draw the picture on the cavas.
+    context.drawImage(videoElement, 0, 0, width, height);
+
+    // Get the data.
+    data = canvasElement.toDataURL('image/png');
+
+    // Return the picture data.
+    return data
+};
+
+/**
  * Close the local stream.
  */
 WebRTC.prototype.closeStream = function () {
