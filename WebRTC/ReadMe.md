@@ -4,8 +4,12 @@ https://drive.google.com/drive/folders/0B-mLEsywAIXBOHlSOHhaUHpQX28/
 
 WebRTCWebSocketServer.zip
 
-Install service:
-  NequeoNetWebSocketService.exe -install
+Windows Service:
+  Install service:
+    NequeoNetWebSocketService.exe -install
   
-Remove service:
-  NequeoNetWebSocketService.exe -remove
+  Remove service:
+    NequeoNetWebSocketService.exe -remove
+
+Windows IIS Service:
+  Deply on any Windows Server or Azure.
