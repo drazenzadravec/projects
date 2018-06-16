@@ -1,0 +1,364 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>WebRTC</title>
+	<link rel="stylesheet" href="css/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="css/main.css" />
+	<script>window.$ = window.jQuery = require('jquery');</script>
+	<script src="lib/assets/ui/1.12.1/jquery-ui.js"></script>
+	<script src="lib/assets/image-picker.min.js"></script>
+</head>
+<body>
+	<!--<select id="picture" class="image-picker show-html"></select>-->
+	<div id="container">
+		<div class="divAlertText">
+			<div>
+				<div class="divID">
+					<label class="labelClass" >Unique ID</label>		
+					<input id="uniqueID" type="text" class="textInput" />
+				</div>
+			</div>
+			<div>
+				<div class="divID" >
+					<label class="labelClass" >Application ID</label>		
+					<input id="applicationID" type="text" class="textInput" />
+				</div>
+			</div>
+			<div>
+				<div class="divID" >
+					<label class="labelClass" >Your State</label>		
+					<input id="clientState" type="text" class="textInput" />
+				</div>
+			</div>
+			<div>
+				<input id="available" type="checkbox" checked>Available for contact</input>
+			</div>
+			<div>
+				<input id="broadcast" type="checkbox" >Allow contacts to see your unique id.</input>
+			</div>
+			<div>
+				<input id="broadcastAppID" type="checkbox" >Allow contacts to see your application id.</input>
+			</div>
+			<div>
+				<input id="changeSettingsButton" type="button" value="Change Settings" class="ui-button ui-corner-all ui-widget" />
+				<input id="clientStateButton" type="button" value="Send Your State" class="ui-button ui-corner-all ui-widget" />
+			</div>
+		</div>
+		<div class="divAlertText">
+			<div id="alertText" ></div>
+		</div>	
+		<div class="divSpacer"></div>
+		<div class="divAlertText">
+			<div>
+				<input id="startCamButton" type="button" value="Start Video & Audio" class="ui-button ui-corner-all ui-widget" />
+				<input id="useVideo" type="checkbox" checked></input>
+				<label for="useVideo">Use Video</label>
+				<input id="useAudio" type="checkbox" checked></input>
+				<label for="useAudio">Use Audio</label>
+				<input id="useScreen" type="checkbox"></input>
+				<label for="useScreen">Use Screen</label>
+				<input id="useWindow" type="checkbox"></input>
+				<label for="useWindow">Use Window</label>
+			</div>
+			<div>
+				<input id="stopCamButton" type="button" value="Stop Video & Audio" class="ui-button ui-corner-all ui-widget" />
+				<input id="videoLocalShow" type="button" value="Local Video" class="ui-button ui-corner-all ui-widget" />
+				<input id="videoRemoteShow" type="button" value="Remote Video(s)" class="ui-button ui-corner-all ui-widget" />
+			</div>
+			<div>
+				<input id="toggleMuteAudioButton" type="checkbox" >Mute Video & Audio</input>	
+			</div>
+			<div class="divSpacer"></div>
+			<div>
+				<label for="localVolumeControl" class="labelClass1">Local Volume Control</label>
+				<input id="localVolumeControl" type="range" min="0" max="100" step="1"></input>
+			</div>
+			<div class="divSpacer"></div>
+			<div>
+				<input id="captureSourceRefresh" type="button" value="Refresh" class="ui-button ui-corner-all ui-widget" />
+				<label for="captureSource">Capture source Screen or Window: </label>
+				<select id="captureSource"></select>
+			</div>
+			<div class="divSpacer"></div>
+			<div>
+				<label for="audioSource">Audio input source: </label>
+				<select id="audioSource"></select>
+			</div>
+			<div>
+				<label for="audioOutput">Audio output destination: </label>
+				<select id="audioOutput"></select>
+			</div>
+			<div>
+				<label for="videoSource">Video source: </label>
+				<select id="videoSource"></select>
+			</div>
+		</div>
+		<div class="divSpacer"></div>
+		<div class="divAlertText">
+			<div>
+				<input id="videoCallButton" type="button" value="Join Conference" class="ui-button ui-corner-all ui-widget" />
+				<input id="endCallButton" type="button" value="Leave Conference" class="ui-button ui-corner-all ui-widget" />
+				<input id="contactAvailableButton" type="button" value="Is Contact Available" class="ui-button ui-corner-all ui-widget" />
+			</div>
+			<div class="divAlertTextInt">
+				<div id="alertTextBack" ></div>
+			</div>
+		</div>
+		<div class="divSpacer"></div>
+		<div class="divAlertText">
+			<div>
+				<div class="divID1" >
+					<label class="labelClass1" >Contact Unique ID</label>		
+					<input id="contactUniqueID" type="text" class="textInput" />
+				</div>
+				</div>
+				<div>
+					<div class="divID1" >
+						<label class="labelClass1" >Contact Application ID</label>		
+						<input id="contactApplicationID" type="text" class="textInput" />
+					</div>
+				</div>
+			<div>
+				<input id="contactSendMessage" type="text" class="textSendMessage" />
+			</div>
+			<div>
+				<input id="contactSendMessageButton" type="button" value="Send Message To Contact" class="ui-button ui-corner-all ui-widget" />
+				<input id="contactSendMessageClearButton" type="button" value="Clear Sent Message(s)" class="ui-button ui-corner-all ui-widget" />
+			</div>
+			<div class="divAlertTextInt">
+				<div id="alertTextMessage" ></div>
+			</div>
+		</div>
+		<div class="divSpacer"></div>
+		<div class="divAlertText">
+			<section>
+				<div>
+					<form id="fileInfo">
+						<input type="file" id="fileInput" name="files" />
+					</form>
+				</div>
+				<div>
+					<input id="fileInputStartTransferButton" type="button" value="Start File Transfer" class="ui-button ui-corner-all ui-widget" />
+					<input id="fileInputStopTransferButton" type="button" value="Close File Transfer" class="ui-button ui-corner-all ui-widget" />
+				</div>
+				<div class="progress">
+					<div class="labelProgress">Progress: </div>
+					<progress id="sendReceiveProgress" max="0" value="0" class="ui-progressbar ui-corner-all ui-widget ui-widget-content"></progress>
+				</div>
+				<div><a id="download"></a></div>
+				<div><span id="status"></span></div>
+			</section>
+		</div>
+		<div class="divSpacer"></div> 
+		<div class="divAlertText">
+			<div>
+				<input id="startRecodingButton" type="button" value="Start Recording Video & Audio" class="ui-button ui-corner-all ui-widget" />
+				<input id="stopRecodingButton" type="button" value="Stop Recording Video & Audio" class="ui-button ui-corner-all ui-widget" />
+			</div>
+		</div>
+		<div class="divSpacer"></div>
+		<div class="divAlertText">
+			<div>
+				<input id="contactApplicationIDListButton" type="button" value="Application ID List" class="ui-button ui-corner-all ui-widget"/>
+				<input id="contactUniqueIDListButton" type="button" value="Unique ID List" class="ui-button ui-corner-all ui-widget"/>
+				<input id="contactGroupListButton" type="button" value="Group ID List" class="ui-button ui-corner-all ui-widget"/>
+				<input id="contactClearListButton" type="button" value="Clear Contact List" class="ui-button ui-corner-all ui-widget"/>
+			</div>
+			<div class="divAlertListText">
+				<div id="alertTextList" ></div>
+			</div>
+		</div>
+		<div class="divSpacer"></div>
+		<div id="dialogVideoLocal" >
+			<div id="resizableLocal" >
+				<video id="localVideo" autoplay playsInline controls width="380" height="340" ></video>
+			</div>
+		</div>
+		<div id="dialogRemoteVideoShow">
+			<input id="addNewContact" type="button" value="Add New Contact" class="ui-button ui-corner-all ui-widget"/>
+			<input id="muteAllRemote" type="checkbox"></input>
+			<label for="muteAllRemote">Mute All Remote Audio</label>
+			<div class="divSpacer"></div>
+			<div id="remoteVideoShow"></div>
+		</div>
+		<div id="dialogAddNewContact">
+			<div>
+				<div class="divID1" >
+					<label class="labelClass1" >Contact Unique ID</label>		
+					<input id="contactUniqueIDAddNew" type="text" class="textInput" />
+				</div>
+				<div></div>
+				<div class="divID1" >
+					<label class="labelClass1" >Contact Application ID</label>		
+					<input id="contactApplicationIDAddNew" type="text" class="textInput" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="lib/assets/adapter.js"></script>
+	<script src="lib/webrtc.bundle.js"></script>
+	<script src="lib/app.js"></script>
+		<script>
+			// Init local video.
+			$( function() {
+				$("#resizableLocal").resizable({
+					alsoResize: "#localVideo"
+				});
+				$("#localVideo").resizable();
+	
+				$("#dialogVideoLocal").dialog({
+					title: "Local Video",
+					autoOpen: false,
+					draggable: true,
+					resizable: true,
+					modal: false,
+					width: 400,
+					height: 400,
+					show: { effect: "explode", duration: 300 },
+					hide: { effect: "explode", duration: 300 },
+					position: {
+						my: "right top",
+						at: "right top"
+					}
+				  });
+	
+				$("#videoLocalShow").on("click", 
+					  function() {
+	
+						// If contact details set.
+						if (uniqueIDElement.value && applicationIDElement.value) {
+	
+							// Change local video title.
+							var title = uniqueIDElement.value + " from " + applicationIDElement.value;
+							$('#dialogVideoLocal').dialog({title: "Local Video - " + title})
+						}
+						$("#dialogVideoLocal").dialog("open");
+				});
+				
+				$('#dialogVideoLocal').bind("dialogresize", function(event, ui) {
+					$('#dialogVideoLocal #resizableLocal').css('height',  ($('#dialogVideoLocal').height() - 15) + 'px');
+					$('#dialogVideoLocal #resizableLocal').css('width',  ($('#dialogVideoLocal').width() - 15) + 'px');
+	
+					$('#resizableLocal #localVideo').css('height',  ($('#resizableLocal').height()) + 'px');
+					$('#resizableLocal #localVideo').css('width',  ($('#resizableLocal').width()) + 'px');
+				});
+
+				$("#dialogRemoteVideoShow").dialog({
+					title: "Remote Videos",
+					autoOpen: false,
+					draggable: true,
+					resizable: true,
+					modal: false,
+					width: 500,
+					height: 500,
+					show: { effect: "explode", duration: 300 },
+					hide: { effect: "explode", duration: 300 },
+					position: {
+						my: "left top",
+						at: "left top"
+					}
+				  });
+
+				  $("#videoRemoteShow").on("click", 
+					  function() {
+						$("#dialogRemoteVideoShow").dialog("open");
+				});
+
+				$("#dialogAddNewContact").dialog({
+					title: "Add New Contact",
+					autoOpen: false,
+					draggable: true,
+					resizable: false,
+					modal: true,
+					width: 500,
+					height: 200,
+					show: { effect: "explode", duration: 300 },
+					hide: { effect: "explode", duration: 300 },
+					position: {
+						my: "center top",
+						at: "center top"
+					},
+					buttons: {
+						Add: function ()
+						{
+							// Get the inputs.
+							var uID = contactUniqueIDAddNew.value;
+							var aIP = contactApplicationIDAddNew.value;
+
+							// If contact details set.
+							if (uID && aIP) {
+								// Add to list.
+								conferenceContactList.push(uID);
+
+								// Create the conference contacts.
+								createConferenceContact(uID, aIP);
+
+								// Create the conference contacts.
+								createNewContact(uID, aIP);
+							}
+							$(this).dialog("close");
+						},
+						Cancel: function ()
+						{
+							$(this).dialog("close");
+						}
+					}
+				  });
+
+				  $("#addNewContact").on("click", 
+					  function() {
+						contactUniqueIDAddNew.value = "";
+						contactApplicationIDAddNew.value = conferenceApplicationID;
+						$("#dialogAddNewContact").dialog("open");
+				});
+			});
+	
+			// Init remote video.
+			function InitRemoteVideo(resizableRemote, remoteVideo, dialogVideoRemote, videoRemoteShow, uniqueID, applicationID) {
+				$("#" + resizableRemote).resizable({
+					alsoResize: "#" + remoteVideo
+				});
+				$("#" + remoteVideo).resizable();
+				 
+				$("#" + dialogVideoRemote).dialog({
+					title: "Remote Video",
+					autoOpen: false,
+					draggable: true,
+					resizable: true,
+					modal: false,
+					width: 400,
+					height: 400,
+					show: { effect: "explode", duration: 300 },
+					hide: { effect: "explode", duration: 300 },
+					position: {
+						my: "left bottom",
+						at: "left bottom"
+					}
+				});
+			
+				$("#" + videoRemoteShow).on("click", 
+					  function() {
+
+						// Change remote video title.
+						var title = uniqueID + " from " + applicationID;
+						contactUniqueIDElement.value = uniqueID;
+						contactApplicationIDElement.value = applicationID;
+						$('#' + dialogVideoRemote).dialog({title: "Remote Video - " + title});
+						$("#" + dialogVideoRemote).dialog("open");
+				});
+				
+				$("#" + dialogVideoRemote).bind("dialogresize", function(event, ui) {
+					$('#' + dialogVideoRemote + ' #' + resizableRemote).css('height',  ($('#' + dialogVideoRemote).height() - 15) + 'px');
+					$('#' + dialogVideoRemote + ' #' + resizableRemote).css('width',  ($('#' + dialogVideoRemote).width() - 15) + 'px');
+	
+					$('#' + resizableRemote + ' #' + remoteVideo).css('height',  ($('#' + resizableRemote).height()) + 'px');
+					$('#' + resizableRemote + ' #' + remoteVideo).css('width',  ($('#' + resizableRemote).width()) + 'px');
+				});
+			};
+		</script>
+    <script>window.addEventListener("load", pageLoad);</script>
+    <script>window.addEventListener("onbeforeunload", pageBeforeUnload);</script>
+</body>
+</html>
