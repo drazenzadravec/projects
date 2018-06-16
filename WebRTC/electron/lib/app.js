@@ -10,24 +10,24 @@ function pageLoad() {
     // WebRTC options.
     var options = { 
         debug: true,
-        signallingURL: "wss://nequeo-websocket.azurewebsites.net/handler.ashx",
+        signallingURL: "wss://localhost/",
         peerConnectionConfiguration: {
             iceServers: [ 
         		{
-                    "urls": "stun:nequeo-vm-1.australiaeast.cloudapp.azure.com:8830"
+                    "urls": "stun:localhost:19302"
                 },
                 {
                     "urls": "stun:stun.l.google.com:19302"
                 },
                 {
-                    "urls": "turn:nequeo-vm-1.australiaeast.cloudapp.azure.com:8830?transport=udp",
-                    "username": "drazen",
-                    "credential": "drazen8"
+                    "urls": "turn:localhost:19302?transport=udp",
+                    "username": "user",
+                    "credential": "password"
                 },
                 {
-                    "urls": "turn:nequeo-vm-1.australiaeast.cloudapp.azure.com:8830?transport=tcp",
-                    "username": "drazen",
-                    "credential": "drazen8"
+                    "urls": "turn:localhost:19302?transport=tcp",
+                    "username": "user",
+                    "credential": "password"
                 }
         	]
         } 
