@@ -1,0 +1,10 @@
+#!/bin/bash
+
+[Desktop Entry]
+Version=1.0
+Name=WebRTC
+Path=/home/drazen/Public/WebRTC/
+Exec=/home/drazen/Public/WebRTC/webrtc.sh
+Type=Application
+Terminal=true
+Icon=/home/drazen/Public/WebRTC/WebRTC-icon-blue.png

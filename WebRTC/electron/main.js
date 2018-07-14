@@ -7,7 +7,7 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 960, icon: __dirname + '/WebRTC-icon-color.png'})
+  mainWindow = new BrowserWindow({width: 700, height: 800, icon: __dirname + '/WebRTC-icon-color.png'})
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
