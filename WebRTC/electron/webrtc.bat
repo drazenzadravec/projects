@@ -1,1 +1,1 @@
-start /min npm start ^& exit
+start D:\Development\Version2017\ThirdPartyTools\Electron\Deployment-3.0.3\electron.exe main.js ^& exit
