@@ -10,23 +10,23 @@ function pageLoad() {
     // WebRTC options.
     var options = { 
         debug: true,
-        signallingURL: "wss://localhost/",
+        signallingURL: "wss://127.0.0.1",
         peerConnectionConfiguration: {
             iceServers: [ 
         		{
-                    "urls": "stun:localhost:19302"
+                    "urls": "stun:127.0.0.1:8830"
                 },
                 {
                     "urls": "stun:stun.l.google.com:19302"
                 },
                 {
-                    "urls": "turn:localhost:19302?transport=udp",
-                    "username": "user",
+                    "urls": "turn:127.0.0.1:8830?transport=udp",
+                    "username": "username",
                     "credential": "password"
                 },
                 {
-                    "urls": "turn:localhost:19302?transport=tcp",
-                    "username": "user",
+                    "urls": "turn:127.0.0.1:8830?transport=tcp",
+                    "username": "username",
                     "credential": "password"
                 }
         	]
@@ -385,7 +385,7 @@ function pageLoad() {
             var a = document.createElement('a');
             a.style.display = 'none';
             a.href = url;
-            a.download = 'test.webm';
+            a.download = 'recordedMedia.webm';
 
             // Add the a element.
             document.body.appendChild(a);
