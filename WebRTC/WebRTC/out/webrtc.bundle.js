@@ -2675,6 +2675,39 @@ WebRtcAdapter.prototype.createStreamEx = function (constraints) {
 }
 
 /**
+ * Create the local media stream from the display media selection.
+ *
+ * @param {string}     constraints   The media constraints.
+ * @link  https://w3c.github.io/mediacapture-main/getusermedia.html#media-track-constraints
+ * @example 
+ *      qvga =  video: {width: {exact: 320}, height: {exact: 240}}
+ *      vga =   video: {width: {exact: 640}, height: {exact: 480}}
+ *      hd =    video: {width: {exact: 1280}, height: {exact: 720}}
+ *      fullHd =video: {width: {exact: 1920}, height: {exact: 1080}}
+ *      fourK = video: {width: {exact: 4096}, height: {exact: 2160}}
+ * 
+ *              audio: {deviceId: audioSource ? {exact: audioSource} : undefined}
+ *              video: {deviceId: videoSource ? {exact: videoSource} : undefined}
+ */
+WebRtcAdapter.prototype.createStreamDisplay = function (constraints) {
+
+    // Create local refs.
+    var localLogger = this.logger;
+
+    // Get the local stream.
+    navigator.getDisplayMedia(constraints).then(
+        function (stream) {
+            // Init the local video stream.
+            self.localStream = stream;
+            self.localStreamVideoElement.srcObject = stream;
+
+        }).catch(
+        function (error) {
+            localLogger.error(error);
+    });
+}
+
+/**
  * Get all audio input devices.
  * 
  * @param {object}     callback   The callback function.
@@ -2789,7 +2822,7 @@ WebRtcAdapter.prototype.getVideoInputDevices = function (callback) {
 WebRtcAdapter.prototype.setLocalStreamToVideoElement = function (videoElement) {
 
     // If stream exists.
-    if (this.localStream) {
+    if (this.localStream === null) {
 
         // Assign the video element.
         self.localStreamVideoElement = videoElement;
@@ -2822,6 +2855,17 @@ WebRtcAdapter.prototype.getStream = function () {
     // Get this local stream.
     var stream = self.localStream;
     return stream;
+};
+
+/**
+ * Set the local stream.
+ * 
+ * @param {MediaStream}      stream   The local media stream.
+ */
+WebRtcAdapter.prototype.setStream = function (stream) {
+
+    // Set the local stream.
+    self.localStream = stream;
 };
 
 /**
@@ -3786,6 +3830,27 @@ WebRTC.prototype.createStreamEx = function (constraints) {
 }
 
 /**
+ * Create the local media stream from the display media selection.
+ *
+ * @param {string}     constraints   The media constraints.
+ * @link  https://w3c.github.io/mediacapture-main/getusermedia.html#media-track-constraints
+ * @example 
+ *      qvga =  video: {width: {exact: 320}, height: {exact: 240}}
+ *      vga =   video: {width: {exact: 640}, height: {exact: 480}}
+ *      hd =    video: {width: {exact: 1280}, height: {exact: 720}}
+ *      fullHd =video: {width: {exact: 1920}, height: {exact: 1080}}
+ *      fourK = video: {width: {exact: 4096}, height: {exact: 2160}}
+ * 
+ *              audio: {deviceId: audioSource ? {exact: audioSource} : undefined}
+ *              video: {deviceId: videoSource ? {exact: videoSource} : undefined}
+ */
+WebRTC.prototype.createStreamDisplay = function (constraints) {
+
+    // Create stream.
+    this.webrtcadapter.createStreamDisplay(constraints);
+}
+
+/**
  * Set the local video element.
  * 
  * @param {object}      videoElement   The local video element.
@@ -3794,6 +3859,19 @@ WebRTC.prototype.setLocalVideoElement = function (videoElement) {
 
     // Assign the video element.
     this.webrtcadapter.setLocalVideoElement(videoElement);
+};
+
+/**
+ * Set the local stream to the video element.
+ * 
+ * @param {object}      videoElement   The local video element.
+ * 
+ * @return {boolean}    True if the stream has been added; else false.
+ */
+WebRTC.prototype.setLocalStreamToVideoElement = function (videoElement) {
+
+    // Assign the video element.
+    return this.webrtcadapter.setLocalStreamToVideoElement(videoElement);
 };
 
 /**
