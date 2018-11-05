@@ -416,9 +416,13 @@ var recordedBlobs = [];
 var startRecodingButton = null;
 var stopRecodingButton = null;
 
+// Internet Explorer 6-11
+var isIE = /*@cc_on!@*/false || !!document.documentMode;
+// Edge 20+
+var isEdge = !isIE && !!window.StyleMedia;
 var isBrowserFirefox = typeof window.InstallTrigger !== 'undefined';
 var isBrowserOpera = !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
-var isBrowserChrome = !!window.chrome && !isOpera;
+var isBrowserChrome = !!window.chrome && !isOpera && !isEdge
 
 /**
  * Initialise the application.
@@ -605,7 +609,7 @@ function getSourceDevices()
  * Start the video and audio.
  */
 function startLocalVideo() {
-
+	
     // Add the local video element.
     webrtc.setLocalVideoElement(localVideoElement);
 
@@ -630,8 +634,7 @@ function startLocalVideo() {
                 // Start the local screen capture.
                 webrtc.createStreamEx(constraints);
             }
-
-            if (isBrowserChrome) {
+            else if (isBrowserChrome) {
                 
                 // Get the screen ID.
                 getScreenId(function (error, sourceId, screen_constraints) {
@@ -654,6 +657,24 @@ function startLocalVideo() {
                     webrtc.createStreamEx(constraints);
                 });
             }
+			else if (isEdge) {
+				// Capture constraints
+                var constraints = {
+                    video: true
+                };
+				
+				// Get the local stream.
+				navigator.getDisplayMedia(constraints).then(
+					function (stream) {
+						// Init the local video stream.
+						webrtc.webrtcadapter.setStream(stream);
+						webrtc.setLocalStreamToVideoElement(localVideoElement);
+
+					}).catch(
+						function (error) {
+							console.log('navigator.getDisplayMedia error: ', error);
+					});
+			}
         }
         else {
 
@@ -672,8 +693,7 @@ function startLocalVideo() {
                 // Start the local window capture.
                 webrtc.createStreamEx(constraints);
             }
-
-            if (isBrowserChrome) {
+            else if (isBrowserChrome) {
 
                 // Get the screen ID.
                 getScreenId(function (error, sourceId, screen_constraints) {
@@ -696,6 +716,24 @@ function startLocalVideo() {
                     webrtc.createStreamEx(constraints);
                 });
             }
+			else if (isEdge) {
+				// Capture constraints
+                var constraints = {
+                    video: true
+                };
+				
+				// Get the local stream.
+				navigator.getDisplayMedia(constraints).then(
+					function (stream) {
+						// Init the local video stream.
+						webrtc.webrtcadapter.setStream(stream);
+						webrtc.setLocalStreamToVideoElement(localVideoElement);
+
+					}).catch(
+						function (error) {
+							console.log('navigator.getDisplayMedia error: ', error);
+					});
+			}
         }
     }
     
