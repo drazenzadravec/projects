@@ -1,0 +1,3 @@
+var UpdateXSConfigurationSkillResponse_Skills = {
+
+};

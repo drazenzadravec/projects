@@ -1,0 +1,2 @@
+var UpdateCampaignResponse_Skills = {
+};
