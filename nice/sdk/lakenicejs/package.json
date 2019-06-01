@@ -1,0 +1,34 @@
+{
+	"name": "lakenicejs",
+	"version": "15.0.1",
+	"main": "./base/lakenice-client.js",
+	"types": "./base/lakenice-client.d.ts",
+	"description": "Java script SDK for the Nice inContact web API service.",
+	"author": {
+		"name": "Lake Development Team"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/lakecorp/nicejssdk.git"
+	},
+	"license": "MIT",
+	"dependencies": {
+		"axios": "^0.18.0",
+		"buffer": "^5.2.1",
+		"jquery": "^3.4.0",
+		"jquery-ui": "^1.12.1",
+		"jsonwebtoken": "^8.5.1",
+		"mockconsole": "0.0.1",
+		"rtcpeerconnection": "^8.4.0",
+		"socket.io-client": "^2.2.0",
+		"util": "^0.12.0",
+		"webrtcsupport": "^2.2.0",
+		"wildemitter": "^1.2.0"
+	},
+	"devDependencies": {
+		"browserify": "^16.2.3",
+		"request": "^2.88.0",
+		"uglify-js": "^3.5.9",
+		"webrtc-adapter": "^7.2.3"
+	}
+}
