@@ -1,0 +1,3 @@
+var StartPersonalConnectionSkillRequest_Skills = {
+
+};

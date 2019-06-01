@@ -1,0 +1,3 @@
+var GetScheduleSettingsSkillRequest_Skills = {
+
+};

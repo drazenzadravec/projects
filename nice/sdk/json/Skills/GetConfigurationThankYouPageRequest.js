@@ -1,0 +1,3 @@
+var GetConfigurationThankYouPageRequest_Skills = {
+
+};
