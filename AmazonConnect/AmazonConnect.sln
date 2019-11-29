@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.852
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmazonConnect", "AmazonConnect\AmazonConnect.csproj", "{3A1EC6C2-DD0B-49CF-BE35-C2ACDF74D0C8}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "IntegrationWebApp", "IntegrationWebApp\IntegrationWebApp.njsproj", "{FA67E18B-D9BE-4C32-BF19-60B29B9F79D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{BBE097EE-D2CE-48DB-AEFF-8D891ADA3EFA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{9975A13D-DC63-492F-AC45-CDD9FF1A0F9D}"
+	ProjectSection(SolutionItems) = preProject
+		docs\ReadMe.txt = docs\ReadMe.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACWebApi", "ACWebApi\ACWebApi.csproj", "{0C1F7467-F61A-46FD-BB6A-C44DE3303B39}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "json", "json", "{EA140A4B-FEFF-4C29-8669-325D9D4E9709}"
+	ProjectSection(SolutionItems) = preProject
+		json\agentjoined.json = json\agentjoined.json
+		json\agentmessage.json = json\agentmessage.json
+		json\disconnected.json = json\disconnected.json
+		json\joined.json = json\joined.json
+		json\leftchat.json = json\leftchat.json
+		json\message.json = json\message.json
+		json\subscribe.json = json\subscribe.json
+		json\systemmessage.json = json\systemmessage.json
+		json\typing.json = json\typing.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3A1EC6C2-DD0B-49CF-BE35-C2ACDF74D0C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A1EC6C2-DD0B-49CF-BE35-C2ACDF74D0C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A1EC6C2-DD0B-49CF-BE35-C2ACDF74D0C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A1EC6C2-DD0B-49CF-BE35-C2ACDF74D0C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA67E18B-D9BE-4C32-BF19-60B29B9F79D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA67E18B-D9BE-4C32-BF19-60B29B9F79D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA67E18B-D9BE-4C32-BF19-60B29B9F79D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA67E18B-D9BE-4C32-BF19-60B29B9F79D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBE097EE-D2CE-48DB-AEFF-8D891ADA3EFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBE097EE-D2CE-48DB-AEFF-8D891ADA3EFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBE097EE-D2CE-48DB-AEFF-8D891ADA3EFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBE097EE-D2CE-48DB-AEFF-8D891ADA3EFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C1F7467-F61A-46FD-BB6A-C44DE3303B39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C1F7467-F61A-46FD-BB6A-C44DE3303B39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C1F7467-F61A-46FD-BB6A-C44DE3303B39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C1F7467-F61A-46FD-BB6A-C44DE3303B39}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E060E686-9CAD-4F44-A0E0-FAED0B256735}
+	EndGlobalSection
+EndGlobal
