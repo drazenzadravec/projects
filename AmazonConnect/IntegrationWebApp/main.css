@@ -1,0 +1,146 @@
+body {
+	font-family: "arial";
+	font-size: 12px;
+}
+
+.snapshotClass {
+	position: absolute;
+	top: 20px;
+	left: 350px;
+	width: 300px;
+	color: darkslategray;
+	border: 2px solid gainsboro;
+	border-radius: 15px;
+	background-color: white;
+	text-align: center;
+	font-weight: bold;
+}
+
+.agentStateChangeClass {
+	position: absolute;
+	top: 480px;
+	left: 16px;
+	width: 300px;
+	color: darkslategray;
+	border: 2px solid gainsboro;
+	border-radius: 15px;
+	background-color: white;
+	text-align: center;
+	font-weight: bold;
+}
+
+.dataGridRowColumnClass {
+	margin: 5px 0px 5px 0px;
+}
+
+.dataGridPositionClass {
+	position: absolute;
+	top: 200px;
+	left: 350px;
+	width: 1000px;
+}
+
+.headingClass {
+	position: center;
+	color: darkslategray;
+	width: 200px;
+	font-weight: bold;
+}
+
+.accountPositionClass {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 500px;
+}
+
+.accountNameClass {
+	position: absolute;
+	color: darkslategray;
+	width: 200px;
+	border: 2px solid white;
+	border-radius: 15px;
+	background-color: white;
+	left: 0px;
+}
+
+.accountValueClass {
+	position: absolute;
+	color: black;
+	width: 200px;
+	border: 2px solid #b0d3e7;
+	border-radius: 15px;
+	background-color: #b0d3e7;
+	left: 202px;
+}
+
+.customerPositionClass {
+	position: absolute;
+	top: 0px;
+	left: 500px;
+	width: 500px;
+}
+
+.customerNameClass {
+	position: absolute;
+	color: darkslategray;
+	width: 200px;
+	border: 2px solid white;
+	border-radius: 15px;
+	background-color: white;
+	left: 0px;
+}
+
+.customerValueClass {
+	position: absolute;
+	color: black;
+	width: 200px;
+	border: 2px solid #b0d3e7;
+	border-radius: 15px;
+	background-color: #b0d3e7;
+	left: 202px;
+}
+
+.postionRow1Class {
+	top: 30px;
+}
+
+.postionRow2Class {
+	top: 60px;
+}
+
+.postionRow3Class {
+	top: 90px;
+}
+
+.postionRow4Class {
+	top: 120px;
+}
+
+.postionRow5Class {
+	top: 150px;
+}
+
+.postionRow6Class {
+	top: 180px;
+}
+
+.postionRow7Class {
+	top: 210px;
+}
+
+.postionRow8Class {
+	top: 240px;
+}
+
+.postionRow9Class {
+	top: 270px;
+}
+
+.postionRow10Class {
+	top: 300px;
+}
+
+.postionRow11Class {
+	top: 330px;
+}

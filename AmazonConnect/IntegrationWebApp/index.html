@@ -1,0 +1,357 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Amazon Connect Application Integration</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="lib/connect-streams.js"></script>
+    <script src="js/lake-js-ui.bundle.js"></script>
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="css/lake-css-ui.bundle.css" />
+    <style>
+        iframe {
+            border: 0px;
+        }
+
+        #containerDiv {
+            width: 320px;
+            height: 465px
+        }
+    </style>
+</head>
+<body>
+	<!--<div id="dialogFrameSnapDiv" class="dialogFrameSnapDiv">
+		<div id="dialogHeaderSnapDiv" class="dialogHeaderSnapDiv">Amazon Connect - Contact Control Panel
+			<button id="dialogFrameClose" onclick="closeDialogFrame();" style="position: absolute; right: 0px; top: 0px">X</button>
+		</div>
+		<div id="dialogContentSnapDiv" class="dialogContentSnapDiv">
+			<div id="containerDiv" style="width:100%; height:99.50%;"></div>
+		</div>
+	</div>
+	<div id="dialogResizerSnapDiv" class="dialogResizerSnapDiv"></div>-->
+
+	<div id="dialogFrameDiv" class="dialogFrameDiv">
+		<div id="dialogHeaderDiv" class="dialogHeaderDiv">Amazon Connect - Contact Control Panel</div>
+		<div id="dialogContentDiv" class="dialogContentDiv">
+			<div id="containerDiv" style="width:100%; height:99.50%;"></div>
+		</div>
+		<div id="dialogResizerDiv" class="dialogResizerDiv"></div>
+	</div>
+
+	<div>
+		<div class="snapshotClass">Snapshot Account</div>
+	</div>
+	<div>
+		<div id="agentStateChange" class="agentStateChangeClass">&nbsp;</div>
+	</div>
+	<div style="position: absolute; top:60px; left: 350px; width:1000px; height:120px">
+		<iframe src="https://lab.lakecorp.com.au/static/awsdemo/xc_Chart.htm"
+				style="width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden;"></iframe>
+	</div>
+	<div>
+		<div class="dataGridPositionClass">
+			<div class="accountPositionClass">
+				<div class="dataGridRowColumnClass">
+					<div class="headingClass">Account</div>
+				</div>
+				<div class="dataGridRowColumnClass">
+					<div class="accountNameClass postionRow1Class">Account Number</div>
+					<div id="AccountNoId" class="accountValueClass postionRow1Class">&nbsp;</div>
+				</div>
+				<div class="dataGridRowColumnClass">
+					<div class="accountNameClass postionRow2Class">Case List Name</div>
+					<div id="CaseListNameId" class="accountValueClass postionRow2Class">&nbsp;</div>
+				</div>
+				<div class="dataGridRowColumnClass">
+					<div class="accountNameClass postionRow3Class">Collection Org</div>
+					<div id="CollectionOrgId" class="accountValueClass postionRow3Class">&nbsp;</div>
+				</div>
+				<div class="dataGridRowColumnClass">
+					<div class="accountNameClass postionRow4Class">Past Due</div>
+					<div id="PastDueId" class="accountValueClass postionRow4Class">&nbsp;</div>
+				</div>
+				<div class="dataGridRowColumnClass">
+					<div class="accountNameClass postionRow5Class">Account Limit</div>
+					<div id="AccountLimitId" class="accountValueClass postionRow5Class">&nbsp;</div>
+				</div>
+				<div class="dataGridRowColumnClass">
+					<div class="accountNameClass postionRow6Class">Current Balance</div>
+					<div id="CurrentBalanceId" class="accountValueClass postionRow6Class">&nbsp;</div>
+				</div>
+				<div class="dataGridRowColumnClass">
+					<div class="accountNameClass postionRow7Class">Total Required</div>
+					<div id="TotalRequiredId" class="accountValueClass postionRow7Class">&nbsp;</div>
+				</div>
+				<div class="dataGridRowColumnClass">
+					<div class="accountNameClass postionRow8Class">Scheduled Payment Amount</div>
+					<div id="ScheduledPaymentAmtId" class="accountValueClass postionRow8Class">&nbsp;</div>
+				</div>
+				<div class="dataGridRowColumnClass">
+					<div class="accountNameClass postionRow9Class">Scheduled Payment Frequency</div>
+					<div id="ScheduledPaymentFreqId" class="accountValueClass postionRow9Class">&nbsp;</div>
+				</div>
+				<div class="dataGridRowColumnClass">
+					<div class="accountNameClass postionRow10Class">Days Delinquent</div>
+					<div id="DaysDelinquentId" class="accountValueClass postionRow10Class">&nbsp;</div>
+				</div>
+			</div>
+			<div class="customerPositionClass">
+				<div class="dataGridRowColumnClass">
+					<div class="headingClass">Customer</div>
+				</div>
+				<div class="dataGridRowColumnClass">
+					<div class="customerNameClass postionRow1Class">Name</div>
+					<div id="Cust1NameId" class="customerValueClass postionRow1Class">&nbsp;</div>
+				</div>
+				<div class="dataGridRowColumnClass">
+					<div class="customerNameClass postionRow2Class">Address 1</div>
+					<div id="Cust1ResAddr1Id" class="customerValueClass postionRow2Class">&nbsp;</div>
+				</div>
+				<div class="dataGridRowColumnClass">
+					<div class="customerNameClass postionRow3Class">Address 2</div>
+					<div id="Cust1ResAddr2Id" class="customerValueClass postionRow3Class">&nbsp;</div>
+				</div>
+				<div class="dataGridRowColumnClass">
+					<div class="customerNameClass postionRow4Class">Address 3</div>
+					<div id="Cust1ResAddr3Id" class="customerValueClass postionRow4Class">&nbsp;</div>
+				</div>
+				<div class="dataGridRowColumnClass">
+					<div class="customerNameClass postionRow5Class">Suburb</div>
+					<div id="Cust1ResSuburbId" class="customerValueClass postionRow5Class">&nbsp;</div>
+				</div>
+				<div class="dataGridRowColumnClass">
+					<div class="customerNameClass postionRow6Class">State</div>
+					<div id="Cust1ResStateId" class="customerValueClass postionRow6Class">&nbsp;</div>
+				</div>
+				<div class="dataGridRowColumnClass">
+					<div class="customerNameClass postionRow7Class">Post Code</div>
+					<div id="Cust1ResPostCodeId" class="customerValueClass postionRow7Class">&nbsp;</div>
+				</div>
+				<div class="dataGridRowColumnClass">
+					<div class="customerNameClass postionRow8Class">Home Phone</div>
+					<div id="Cust1HomePhoneId" class="customerValueClass postionRow8Class">&nbsp;</div>
+				</div>
+				<div class="dataGridRowColumnClass">
+					<div class="customerNameClass postionRow9Class">Mobile Phone</div>
+					<div id="Cust1MobilePhoneId" class="customerValueClass postionRow9Class">&nbsp;</div>
+				</div>
+				<div class="dataGridRowColumnClass">
+					<div class="customerNameClass postionRow10Class">Work Phone</div>
+					<div id="Cust1WorkPhoneId" class="customerValueClass postionRow10Class">&nbsp;</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="position: absolute; top:60px; right:0px; width:400px; height:820px">
+		<iframe src="https://lab.lakecorp.com.au/static/awsdemo/xc_FAQLinks.htm"
+				style="width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden;"></iframe>
+	</div>
+	<div style="position: absolute; bottom: 10px; right:10px; width:500px; height:700px">
+		<iframe src="customer.html" style="width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden;"></iframe>
+	</div>
+	<script>
+		/* Edit the instanceName below with your instance alias */
+		var instanceName = "lakecorp";
+		var customerNo = "";
+		var accepted = false;
+
+		connect.core.initCCP(containerDiv, {
+			ccpUrl: "https://" + instanceName + ".awsapps.com/connect/ccp-v2/",
+			loginPopup: true,
+			loginUrl: null,
+			region: "ap-southeast-2",
+			softphone: {
+				allowFramedSoftphone: true,
+				disableRingtone: true,
+				ringtoneUrl: null
+			}
+		});
+
+		var awsConnect = connect;
+
+		connect.contact(function (contact) {
+			contact.onConnecting(function (env) {
+				var attributeMap = env.getAttributes();
+
+				var activeConnection = env.getActiveInitialConnection();
+				var contactId = activeConnection['contactId'];
+				var connectionId = activeConnection['connectionId'];
+				var conn = new connect.Connection(contactId, connectionId);
+				customerNo = conn.getEndpoint().phoneNumber;
+
+				//var baseURL = attributeMap.screenPopURL.value;
+				//var searchString = attributeMap.screenPopValue.value;
+				//var screenpopURL = baseURL + searchString;
+				//window.open(screenpopURL);
+			});
+
+			contact.onConnected(function (env) {
+				var attributeMap = env.getAttributes();
+			});
+
+			contact.onAccepted(function (env) {
+				accepted = true;
+				getCustomer();
+			});
+		});
+		connect.agent(function (agent) {
+			agent.onStateChange(function (agentStateChange) {
+
+				var asc = document.getElementById("agentStateChange");
+				asc.innerHTML = agentStateChange.newState;
+			});
+		});
+
+
+		/**
+		* get the customer details.
+		*
+		*/
+		function getCustomer() {
+
+			// Get the data.
+			var request = $.ajax({
+				url: "https://lab.lakecorp.com.au/nicecxapi/api/values/" + customerNo.replace("+", ""),
+				dataType: "text"
+			});
+
+			// Request done.
+			request.done(function (jsonData) {
+
+				// JSON data.
+				var data = JSON.parse(jsonData);
+				var textedJson = JSON.stringify(data, undefined, 4);
+				//$('#jsonResults').text(textedJson);
+
+				// assign the
+				var accountNo = document.getElementById('AccountNoId');
+				accountNo.innerHTML = data.customer.AccountNo;
+
+				// assign the
+				var caseListName = document.getElementById('CaseListNameId');
+				caseListName.innerHTML = data.customer.CaseListName;
+
+				// assign the
+				var collectionOrg = document.getElementById('CollectionOrgId');
+				collectionOrg.innerHTML = data.customer.CollectionOrg;
+
+				try {
+					// assign the
+					var pastDue = document.getElementById('PastDueId');
+					pastDue.innerHTML = '$' + new Intl.NumberFormat().format(data.customer.PastDue);
+				} catch (e) {
+					console.error(e);
+				}
+
+				try {
+					// assign the
+					var accountLimit = document.getElementById('AccountLimitId');
+					accountLimit.innerHTML = '$' + new Intl.NumberFormat().format(data.customer.AccountLimit);
+				} catch (e) {
+					console.error(e);
+				}
+
+				try {
+					// assign the
+					var currentBalance = document.getElementById('CurrentBalanceId');
+					currentBalance.innerHTML = '$' + new Intl.NumberFormat().format(data.customer.CurrentBalance);
+				} catch (e) {
+					console.error(e);
+				}
+
+				try {
+					// assign the
+					var totalRequired = document.getElementById('TotalRequiredId');
+					totalRequired.innerHTML = '$' + new Intl.NumberFormat().format(data.customer.TotalRequired);
+				} catch (e) {
+					console.error(e);
+				}
+
+				try {
+					// assign the
+					var scheduledPaymentAmt = document.getElementById('ScheduledPaymentAmtId');
+					scheduledPaymentAmt.innerHTML = '$' + new Intl.NumberFormat().format(data.customer.ScheduledPaymentAmt);
+				} catch (e) {
+					console.error(e);
+				}
+
+				// assign the
+				var scheduledPaymentFreqId = document.getElementById('ScheduledPaymentFreqId');
+				scheduledPaymentFreqId.innerHTML = data.customer.ScheduledPaymentFreq;
+
+				// assign the
+				var daysDelinquentId = document.getElementById('DaysDelinquentId');
+				daysDelinquentId.innerHTML = data.customer.DaysDelinquent;
+
+				// assign the
+				var cust1NameId = document.getElementById('Cust1NameId');
+				cust1NameId.innerHTML = data.customer.Cust1Name;
+
+				// assign the
+				var cust1ResAddr1Id = document.getElementById('Cust1ResAddr1Id');
+				cust1ResAddr1Id.innerHTML = data.customer.Cust1ResAddr1;
+
+				// assign the
+				var cust1ResAddr2Id = document.getElementById('Cust1ResAddr2Id');
+				if (data.customer.Cust1ResAddr2 !== "" && data.customer.Cust1ResAddr2 !== null) {
+					cust1ResAddr2Id.innerHTML = data.customer.Cust1ResAddr2;
+				}
+				else {
+					cust1ResAddr2Id.innerHTML = "&nbsp;";
+				}
+
+				// assign the
+				var cust1ResAddr3Id = document.getElementById('Cust1ResAddr3Id');
+				if (data.customer.Cust1ResAddr3 !== "" && data.customer.Cust1ResAddr3 !== null) {
+					cust1ResAddr3Id.innerHTML = data.customer.Cust1ResAddr3;
+				}
+				else {
+					cust1ResAddr3Id.innerHTML = "&nbsp;";
+				}
+
+				// assign the
+				var cust1ResSuburbId = document.getElementById('Cust1ResSuburbId');
+				cust1ResSuburbId.innerHTML = data.customer.Cust1ResSuburb;
+
+				// assign the
+				var cust1ResStateId = document.getElementById('Cust1ResStateId');
+				cust1ResStateId.innerHTML = data.customer.Cust1ResState;
+
+				// assign the
+				var cust1ResPostCodeId = document.getElementById('Cust1ResPostCodeId');
+				cust1ResPostCodeId.innerHTML = data.customer.Cust1ResPostCode;
+
+				// assign the
+				var cust1HomePhoneId = document.getElementById('Cust1HomePhoneId');
+				if (data.customer.Cust1HomePhone !== "" && data.customer.Cust1HomePhone !== null) {
+					cust1HomePhoneId.innerHTML = data.customer.Cust1HomePhone;
+				}
+				else {
+					cust1HomePhoneId.innerHTML = "&nbsp;";
+				}
+
+				// assign the
+				var cust1MobilePhoneId = document.getElementById('Cust1MobilePhoneId');
+				cust1MobilePhoneId.innerHTML = data.customer.Cust1MobilePhone;
+
+				// assign the
+				var cust1WorkPhoneId = document.getElementById('Cust1WorkPhoneId');
+				cust1WorkPhoneId.innerHTML = data.customer.Cust1WorkPhone;
+
+			});
+
+			// Request fail.
+			request.fail(function (jqXHR, status) {
+				console.log(status);
+			});
+		}
+	</script>
+	<script>
+		initDialogControl("dialogFrameDiv", "dialogHeaderDiv", "dialogContentDiv", "dialogResizerDiv", 0, 34);
+			//initDialogControlSnap("dialogFrameSnapDiv", "dialogHeaderSnapDiv", "dialogContentSnapDiv", "dialogResizerSnapDiv", 0, 25);
+	</script>
+</body>
+</html>
