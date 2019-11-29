@@ -1,0 +1,16 @@
+{
+	"content": {
+		"AbsoluteTime": "2019-11-27T01:50:35.013Z",
+		"Content": "Hello from Holly",
+		"ContentType": "text/plain",
+		"Id": "c1da4c49-2608-4833-90d9-87673ed38cf4",
+		"Type": "MESSAGE",
+		"ParticipantId": "7b66b650-6aeb-4445-a192-40330d6505ba",
+		"DisplayName": "Holly",
+		"ParticipantRole": "CUSTOMER",
+		"InitialContactId": "ee8b9afc-e6f3-46ca-aec1-aee474dd9ae6",
+		"ContactId": "ee8b9afc-e6f3-46ca-aec1-aee474dd9ae6"
+	},
+	"contentType": "application/json",
+	"topic": "aws/chat"
+}

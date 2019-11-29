@@ -1,0 +1,14 @@
+{
+	"content": {
+		"AbsoluteTime": "2019-11-27T01:50:28Z",
+		"ContentType": "application/vnd.amazonaws.connect.event.participant.joined",
+		"Id": "51b316a0-4e7a-43f5-8267-c4900652b927",
+		"Type": "EVENT",
+		"ParticipantId": "7b66b650-6aeb-4445-a192-40330d6505ba",
+		"DisplayName": "Holly",
+		"ParticipantRole": "CUSTOMER",
+		"InitialContactId": "ee8b9afc-e6f3-46ca-aec1-aee474dd9ae6"
+	},
+	"contentType": "application/json",
+	"topic": "aws/chat"
+}

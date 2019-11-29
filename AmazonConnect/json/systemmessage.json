@@ -1,0 +1,16 @@
+{
+	"content": {
+		"AbsoluteTime": "2019-11-27T01:50:33.679Z",
+		"Content": "Hi you are being put into queue",
+		"ContentType": "text/plain",
+		"Id": "737dd147-924c-4175-a9b6-8deb0bcbdc53",
+		"Type": "MESSAGE",
+		"ParticipantId": "d073df95-baa8-4580-ba39-0b8a777d5e47",
+		"DisplayName": "SYSTEM_MESSAGE",
+		"ParticipantRole": "SYSTEM",
+		"InitialContactId": "ee8b9afc-e6f3-46ca-aec1-aee474dd9ae6",
+		"ContactId": "ee8b9afc-e6f3-46ca-aec1-aee474dd9ae6"
+	},
+	"contentType": "application/json",
+	"topic": "aws/chat"
+}

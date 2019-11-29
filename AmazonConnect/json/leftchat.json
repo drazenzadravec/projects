@@ -1,0 +1,15 @@
+{
+	"content": {
+		"AbsoluteTime": "2019-11-27T01:58:17.038Z",
+		"ContentType": "application/vnd.amazonaws.connect.event.participant.left",
+		"Id": "74f5485d-32ce-4e15-a808-72a06e1d3d88",
+		"Type": "EVENT",
+		"ParticipantId": "b9291514-e3d7-4684-8676-9999c47ec018",
+		"DisplayName": "Drazen",
+		"ParticipantRole": "AGENT",
+		"InitialContactId": "ee8b9afc-e6f3-46ca-aec1-aee474dd9ae6",
+		"ContactId": "ee8b9afc-e6f3-46ca-aec1-aee474dd9ae6"
+	},
+	"contentType": "application/json",
+	"topic": "aws/chat"
+}

@@ -1,0 +1,16 @@
+{
+	"content": {
+		"AbsoluteTime": "2019-11-27T01:58:21.502Z",
+		"Content": "The agent has disconnected",
+		"ContentType": "text/plain",
+		"Id": "a58fb9a3-1b62-43e8-881d-c33d6341e898",
+		"Type": "MESSAGE",
+		"ParticipantId": "d073df95-baa8-4580-ba39-0b8a777d5e47",
+		"DisplayName": "SYSTEM_MESSAGE",
+		"ParticipantRole": "SYSTEM",
+		"InitialContactId": "ee8b9afc-e6f3-46ca-aec1-aee474dd9ae6",
+		"ContactId": "ee8b9afc-e6f3-46ca-aec1-aee474dd9ae6"
+	},
+	"contentType": "application/json",
+	"topic": "aws/chat"
+}

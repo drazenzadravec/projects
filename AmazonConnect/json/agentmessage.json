@@ -1,0 +1,16 @@
+{
+	"content": {
+		"AbsoluteTime": "2019-11-27T01:57:24.712Z",
+		"Content": "hello from me\\n",
+		"ContentType": "text/plain",
+		"Id": "129be674-6d18-41a2-a8d5-1d91aaf2021e",
+		"Type": "MESSAGE",
+		"ParticipantId": "b9291514-e3d7-4684-8676-9999c47ec018",
+		"DisplayName": "Drazen",
+		"ParticipantRole": "AGENT",
+		"InitialContactId": "ee8b9afc-e6f3-46ca-aec1-aee474dd9ae6",
+		"ContactId": "ee8b9afc-e6f3-46ca-aec1-aee474dd9ae6"
+	},
+	"contentType": "application/json",
+	"topic": "aws/chat"
+}
