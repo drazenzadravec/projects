@@ -1,0 +1,79 @@
+﻿.dialogFrameDiv {
+	position: absolute;
+	z-index: 999;
+	background-color: white;
+	text-align: center;
+	border: 1px solid #d3d3d3;
+	box-shadow: 5px 5px 5px #aaaaaa;
+	width: 400px;
+	height: 550px;
+}
+
+.dialogHeaderDiv {
+	padding: 10px;
+	cursor: move;
+	z-index: 998;
+	background-color: #2196F3;
+	color: #fff;
+}
+
+.dialogContentDiv {
+	z-index: 996;
+	overflow: auto;
+	width: 100%;
+	height: 520px;
+}
+
+.dialogResizerDiv {
+	z-index: 997;
+	width: 15px;
+	height: 15px;
+	background-color: gainsboro;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	cursor: se-resize;
+	opacity: 0.0;
+}
+
+.dialogFrameSnapDiv {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	z-index: 999;
+	border: 1px solid #d3d3d3;
+	background-color: white;
+	box-shadow: 5px 5px 5px #aaaaaa;
+	width: 400px;
+	height: 550px;
+}
+
+.dialogHeaderSnapDiv {
+	background-color: #2196F3;
+	cursor: move;
+	color: #fff;
+	height: 25px;
+	text-align:center;
+	z-index: 998;
+}
+
+.dialogContentSnapDiv {
+    z-index: 996;
+    overflow: auto;
+    width: 100%;
+    height: 525px;
+}
+
+.dialogResizerSnapDiv {
+	background: white;
+	opacity: 0.2;
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	z-index: 997;
+	-webkit-transition: all 0.25s ease-in-out;
+	-moz-transition: all 0.25s ease-in-out;
+	-ms-transition: all 0.25s ease-in-out;
+	-o-transition: all 0.25s ease-in-out;
+	transition: all 0.25s ease-in-out;
+}
