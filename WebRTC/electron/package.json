@@ -16,7 +16,7 @@
   ],
   "author": "Drazen Zadravec",
   "devDependencies": {
-    "electron": "^2.0.0"
+    "electron": "^9.1.0"
   },
   "dependencies": {
     "jquery": "^3.3.1",
