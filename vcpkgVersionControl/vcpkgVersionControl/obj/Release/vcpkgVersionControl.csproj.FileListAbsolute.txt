@@ -1,6 +1,0 @@
-D:\Development\Version2019\Nequeo\Windows\Client\Management\vcpkgVersionControl\vcpkgVersionControl\bin\Release\vcpkgVersionControl.exe.config
-D:\Development\Version2019\Nequeo\Windows\Client\Management\vcpkgVersionControl\vcpkgVersionControl\bin\Release\vcpkgVersionControl.exe
-D:\Development\Version2019\Nequeo\Windows\Client\Management\vcpkgVersionControl\vcpkgVersionControl\bin\Release\vcpkgVersionControl.pdb
-D:\Development\Version2019\Nequeo\Windows\Client\Management\vcpkgVersionControl\vcpkgVersionControl\obj\Release\vcpkgVersionControl.csproj.CoreCompileInputs.cache
-D:\Development\Version2019\Nequeo\Windows\Client\Management\vcpkgVersionControl\vcpkgVersionControl\obj\Release\vcpkgVersionControl.exe
-D:\Development\Version2019\Nequeo\Windows\Client\Management\vcpkgVersionControl\vcpkgVersionControl\obj\Release\vcpkgVersionControl.pdb
