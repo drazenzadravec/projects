@@ -1,3 +1,0 @@
-var EndRequest_WorkItems = {
-
-};

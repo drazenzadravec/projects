@@ -1,3 +1,0 @@
-var CoachAgentRequest_Supervisor = {
-
-};

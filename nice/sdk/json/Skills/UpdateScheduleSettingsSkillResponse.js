@@ -1,3 +1,0 @@
-var UpdateScheduleSettingsSkillResponse_Skills = {
-
-};

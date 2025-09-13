@@ -1,3 +1,0 @@
-var UpdateSkillResponse_Skills = {
-
-};

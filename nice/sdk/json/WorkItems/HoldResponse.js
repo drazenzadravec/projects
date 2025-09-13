@@ -1,3 +1,0 @@
-var HoldResponse_WorkItems = {
-
-};

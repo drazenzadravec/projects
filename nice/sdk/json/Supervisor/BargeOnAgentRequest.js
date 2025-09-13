@@ -1,3 +1,0 @@
-var BargeOnAgentRequest_Supervisor = {
-
-};

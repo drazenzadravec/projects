@@ -1,3 +1,0 @@
-var UpdateOutboundSkillGeneralSettingsResponse_Skills = {
-
-};

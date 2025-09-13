@@ -1,3 +1,0 @@
-var AcceptResponse_WorkItems = {
-
-};

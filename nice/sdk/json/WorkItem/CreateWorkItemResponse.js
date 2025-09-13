@@ -1,3 +1,0 @@
-var CreateWorkItemResponse_WorkItem = {
-
-};

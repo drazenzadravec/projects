@@ -1,3 +1,0 @@
-var UpdateRetrySettingsSkillResponse_Skills = {
-
-};

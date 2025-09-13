@@ -1,3 +1,0 @@
-var UpdateCPAManagementConfigurationSkillResponse_Skills = {
-
-};

@@ -1,3 +1,0 @@
-var UpdateDeliveryPreferencesConfigurationSkillResponse_Skills = {
-
-};

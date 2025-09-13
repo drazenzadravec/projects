@@ -1,3 +1,0 @@
-var EndVoicemailContactResponse_Voicemails = {
-
-};

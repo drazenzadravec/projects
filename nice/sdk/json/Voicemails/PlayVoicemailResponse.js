@@ -1,3 +1,0 @@
-var PlayVoicemailResponse_Voicemails = {
-
-};

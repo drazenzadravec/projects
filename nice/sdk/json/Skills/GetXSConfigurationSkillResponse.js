@@ -1,3 +1,0 @@
-var GetXSConfigurationSkillResponse_Skills = {
-
-};

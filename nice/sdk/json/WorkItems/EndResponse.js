@@ -1,3 +1,0 @@
-var EndResponse_WorkItems = {
-
-};

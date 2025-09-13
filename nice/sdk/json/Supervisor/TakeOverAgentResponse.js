@@ -1,3 +1,0 @@
-var TakeOverAgentResponse_Supervisor = {
-
-};

@@ -1,3 +1,0 @@
-var TransferVoicemailToSkillResponse_Voicemails = {
-
-};

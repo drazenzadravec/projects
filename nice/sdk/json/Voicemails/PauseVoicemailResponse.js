@@ -1,3 +1,0 @@
-var PauseVoicemailResponse_Voicemails = {
-
-};

@@ -1,3 +1,0 @@
-var RejectRequest_WorkItems = {
-
-};

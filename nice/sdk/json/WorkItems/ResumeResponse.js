@@ -1,3 +1,0 @@
-var ResumeResponse_WorkItems = {
-
-};

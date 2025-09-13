@@ -1,3 +1,0 @@
-var GetCampaignRequest_Skills = {
-
-};
